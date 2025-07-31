@@ -1,0 +1,12 @@
+[
+  {"id": 1,  "ad": "İlayda Özerdoğan",  "brans": "Matematik",   "telefon": "05550000101", "image":"ilayda.png"},
+  {"id": 2,  "ad": "Arda Aras",         "brans": "Matematik",   "telefon": "05550000102", "image":"arda.png"},
+  {"id": 3,  "ad": "Selin Sarıçalı",    "brans": "Kimya",       "telefon": "05550000103", "image":"selin.png"},
+  {"id": 4,  "ad": "Poyraz Dağaşan",    "brans": "Kimya",       "telefon": "05550000104", "image":"poyraz.png"},
+  {"id": 5,  "ad": "Utku Gürel",        "brans": "Edebiyat",    "telefon": "05550000105", "image":"utku.png"},
+  {"id": 6,  "ad": "Can Ertek",         "brans": "İngilizce",   "telefon": "05550000106", "image":"can.png"},
+  {"id": 7,  "ad": "Baran Soyaltın",    "brans": "Din Kültürü", "telefon": "05550000107", "image":"baran.png"},
+  {"id": 8,  "ad": "Ege Kaya",          "brans": "Fizik",       "telefon": "05550000108", "image":"ege.png"},
+  {"id": 9,  "ad": "Doruk Vardalı",     "brans": "Edebiyat",    "telefon": "05550000109", "image":"doruk.png"},
+  {"id": 10, "ad": "Yaren Oluç",        "brans": "Fizik",       "telefon": "05550000110", "image":"yaren.png"}
+]
