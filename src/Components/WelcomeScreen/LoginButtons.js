@@ -1,28 +1,7 @@
 //  Ana giriş butonlarını içerir: Veli Girişi, Yönetici Girişi, Öğretmenlerimiz.  Welcome Screen için.
 
-import { Pressable, Text, StyleSheet, View } from 'react-native';
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  button: {
-    width: '80%',
-    paddingVertical: 14,
-    backgroundColor: '#000',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  buttonSpacing: {
-    marginTop: 12,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-});
-
+import { Pressable, Text, View } from 'react-native';
+import styles from '../../styles/WelcomeScreenStyle';
 
 const LoginButtons = ({ onNavigate }) => {
   return (

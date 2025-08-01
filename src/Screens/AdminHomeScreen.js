@@ -16,7 +16,7 @@ import EmptyState from '../components/AdminHomeScreen/EmptyState';
 import FilterBar from '../components/AdminHomeScreen/FilterBar';
 import ResultsHeader from '../components/AdminHomeScreen/ResultsHeader';
 
-export default function AdvancedAdminPanel() {
+export default function AdminHomeScreen() {
   const [teachers, setTeachers] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('Tümü');

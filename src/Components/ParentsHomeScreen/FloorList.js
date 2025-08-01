@@ -1,13 +1,8 @@
 // Tüm katları listeleyen bileşen: her kat için FloorCard render eder.
 
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
 import FloorCard from './FloorCard';
-
-const styles = StyleSheet.create({
-  list: {
-    padding: 16,
-  },
-});
+import styles from '../../styles/ParentsHomeScreenStyle';
 
 const FloorList = ({
   teachers,

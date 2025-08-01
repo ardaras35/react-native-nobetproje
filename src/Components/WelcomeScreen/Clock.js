@@ -1,24 +1,7 @@
 // Canlı saat ve tarih gösterimini sağlar.  Welcome Screen için.
 
-import { Text, View, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  clockContainer: {
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  timeText: {
-    fontSize: 48,
-    fontWeight: '700',
-    color: '#000000',
-    marginBottom: 4,
-  },
-  dateText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#000000',
-  },
-});
+import { Text, View } from 'react-native';
+import styles from '../../styles/WelcomeScreenStyle';
 
 const Clock = ({ now }) => {
   const timeDisplay = now.toLocaleTimeString('tr-TR', {

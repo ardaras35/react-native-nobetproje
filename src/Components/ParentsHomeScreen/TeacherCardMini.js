@@ -1,25 +1,8 @@
 // Öğretmen küçük kart bileşeni. FloorCard içerisinde kullanılıyor.
 
-import { View, Text, Image, Alert, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, Image, Alert, TouchableOpacity } from 'react-native';
 import imageMap from '../../utils/imageMap';
-
-const styles = StyleSheet.create({
-  card: {
-    alignItems: 'center',
-    gap: 6,
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginBottom: 4,
-  },
-  name: {
-    fontSize: 14,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-});
+import styles from '../../styles/ParentsHomeScreenStyle';
 
 const TeacherCardMini = ({ teacher }) => {
   const source =

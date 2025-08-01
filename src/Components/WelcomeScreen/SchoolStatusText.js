@@ -1,16 +1,8 @@
 //  Okulun açık/kapalı durumuna göre kalan süre bilgisini gösterir.  Welcome Screen için.
 
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import { isWeekend } from '../../utils/schedule';
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 18,
-    textAlign: 'center',
-    marginBottom: 40,
-    color: '#000000',
-  },
-});
+import styles from '../../styles/WelcomeScreenStyle';
 
 const SchoolStatusText = ({ now, isSchoolOpen, currentSlot, minutesToNextClass, minutesToNextBreak }) => {
   let timerText = '';

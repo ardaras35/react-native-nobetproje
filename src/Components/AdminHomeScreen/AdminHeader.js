@@ -2,7 +2,7 @@
 
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles from '../../styles/AdvancedAdminPanelStyle';
+import styles from '../../styles/AdminHomeScreenStyle';
 
 const AdminHeader = ({ navigation, onShowStats, onSave }) => {
   return (
