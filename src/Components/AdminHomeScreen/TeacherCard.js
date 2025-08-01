@@ -2,7 +2,7 @@
 
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles from '../../styles/AdminHomeScreenStyle';
+import styles from './Styles/TeacherCardStyle';
 import { getTeacherImage } from '../../utils/imageMap'; 
 
 const statusColors = {
@@ -22,7 +22,6 @@ const TeacherCard = ({
 
   return (
     <View style={styles.card}>
-      {/* Kart Üst Bilgileri */}
       <View style={styles.cardHeader}>
         <View style={styles.teacherInfo}>
           <Image source={img} style={styles.avatar} />
@@ -44,7 +43,6 @@ const TeacherCard = ({
         </View>
       </View>
 
-      {/* Durum Güncelleme */}
       <View style={styles.actionSection}>
         <Text style={styles.sectionTitle}>Durum Güncelle</Text>
         <View style={styles.statusButtons}>
@@ -63,7 +61,6 @@ const TeacherCard = ({
           ))}
         </View>
 
-        {/* Kat Ataması */}
         <Text style={styles.sectionTitle}>Kat Ataması</Text>
         <View style={styles.floorButtons}>
           {[1, 2, 3, 4, 5].map((floor) => (
@@ -89,7 +86,6 @@ const TeacherCard = ({
           ))}
         </View>
 
-        {/* Öğretmen Sil */}
         <TouchableOpacity
           style={styles.deleteButton}
           onPress={() => removeTeacher(teacher.id)}

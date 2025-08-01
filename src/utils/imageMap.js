@@ -15,3 +15,5 @@ export function getTeacherImage(imageName) {
   const key = imageName?.replace('.png', '');
   return imageMap[key] || require('../../assets/default.png');
 }
+
+export default imageMap;

@@ -2,26 +2,7 @@
 
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import styles from '../../styles/ParentsHomeScreenStyle';
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#fff',
-    paddingVertical: 20,
-    paddingHorizontal: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
-    elevation: 2,
-  },
-  header: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: '#333',
-  },
-});
+import styles from './Styles/ParentsHeaderStyle';
 
 const ParentsHeader = ({ navigation }) => {
   return (
@@ -30,7 +11,7 @@ const ParentsHeader = ({ navigation }) => {
         <MaterialIcons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
       <Text style={styles.header}>Kat Bilgisi</Text>
-      <View style={{ width: 24 }} /> {/* Spacer */}
+      <View style={{ width: 24 }} /> 
     </View>
   );
 };

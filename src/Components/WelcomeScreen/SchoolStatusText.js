@@ -2,7 +2,7 @@
 
 import { Text } from 'react-native';
 import { isWeekend } from '../../utils/schedule';
-import styles from '../../styles/WelcomeScreenStyle';
+import styles from './Styles/SchoolStatusTextStyle';
 
 const SchoolStatusText = ({ now, isSchoolOpen, currentSlot, minutesToNextClass, minutesToNextBreak }) => {
   let timerText = '';

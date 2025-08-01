@@ -1,6 +1,7 @@
 //  Yönetici giriş ekranı üst başlığı: geri tuşu, başlık metni, boş spacer alan bulunmaktadır.
 
 import { View, Text, Pressable } from 'react-native';
+import styles from './Styles/AdminLoginHeaderStyle';
 
 const AdminLoginHeader = ({ navigation }) => {
   return (

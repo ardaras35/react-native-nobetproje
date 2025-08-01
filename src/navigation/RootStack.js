@@ -4,7 +4,7 @@ import ParentsLogin from '../Screens/ParentsLoginScreen';
 import ParentsHome from '../Screens/ParentsHomeScreen';
 import AdminLogin from '../Screens/AdminLoginScreen';
 import AdminHome from '../Screens/AdminHomeScreen';
-import Teachers from '../Screens/Teachers';
+import Teachers from '../Screens/TeacherScreen';
 
 const Stack = createNativeStackNavigator();
 

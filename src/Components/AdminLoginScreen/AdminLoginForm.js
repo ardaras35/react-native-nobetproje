@@ -1,6 +1,7 @@
 // Yönetici giriş formu: ad-soyad input, şifre input, giriş butonu bulunmaktadır.
 
 import { View, Text, TextInput, Pressable } from 'react-native';
+import styles from './Styles/AdminLoginFormStyle';
 
 const AdminLoginForm = ({ fullName, setFullName, password, setPassword, onLogin }) => {
   return (

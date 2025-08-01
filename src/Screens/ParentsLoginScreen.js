@@ -1,29 +1,25 @@
-// Veli Girişi Ekranı:  Geri butonu ve başlık, logo ve açıklama yazısı, isim ve numara ile giriş formu bulunmaktadır.
+// Veli girişi ekranı: geri butonu ve başlık, bilgi ve logo bölümü, ad-soyad ve numara ile giriş formu bulunmakta. 
+// ParentsLoginScreen için.
 
 import React, { useState } from 'react';
-import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styles from '../styles/ParentsLoginScreenStyle';
 import parents from '../data/parent.json';
+import styles from '../styles/ParentsLoginScreenStyle';
 
-// Kullanılan component dosyaları çekiliyor.
-import LoginHeader from '../components/ParentsLogin/LoginHeader';
-import LoginIntro from '../components/ParentsLogin/LoginIntro';
-import ParentLoginForm from '../components/ParentsLogin/ParentLoginForm';
+import LoginHeader from '../Components/ParentsLoginScreen/LoginHeader';
+import LoginIntro from '../Components/ParentsLoginScreen/LoginIntro';
+import ParentsLoginForm from '../Components/ParentsLoginScreen/ParentsLoginForm';
 
 export default function ParentsLoginScreen() {
   const [fullName, setFullName] = useState('');
   const [numara, setNumara] = useState('');
   const navigation = useNavigation();
 
-  /**
-   * Giriş butonuna basıldığında çalışır, ismi ayırır. JSON'dan eşleşen kullanıcıyı bulur.
-   * Başarılıysa yönlendirir, değilse uyarır **/
-
   const handleLogin = () => {
     const tokens = fullName.trim().split(/\s+/);
     if (tokens.length < 2 || !numara.trim()) {
-      return alert('Eksik Bilgi', 'Lütfen girdiğiniz bilgileri kontrol edin.');
+      return Alert.alert('Eksik Bilgi', 'Lütfen girdiğiniz bilgileri kontrol edin.');
     }
 
     const lastName = tokens.pop().toLowerCase();
@@ -46,25 +42,14 @@ export default function ParentsLoginScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Üst geri butonu ve başlık */}
       <LoginHeader navigation={navigation} />
-
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          {/* Logo ve bilgi yazısı */}
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <LoginIntro />
-
-          {/* Form alanı */}
-          <ParentLoginForm
+          <ParentsLoginForm
             fullName={fullName}
-            setFullName={setFullName}
             numara={numara}
+            setFullName={setFullName}
             setNumara={setNumara}
             onLogin={handleLogin}
           />

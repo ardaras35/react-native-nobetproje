@@ -8,9 +8,9 @@ import styles from '../styles/AdminLoginScreenStyle';
 
 
 // Kullanılan component dosyaları çekiliyor.
-import AdminLoginHeader from '../components/AdminLogin/AdminLoginHeader';
-import AdminLoginIntro from '../components/AdminLogin/AdminLoginIntro';
-import AdminLoginForm from '../components/AdminLogin/AdminLoginForm';
+import AdminLoginHeader from '../Components/AdminLoginScreen/AdminLoginHeader';
+import AdminLoginIntro from '../Components/AdminLoginScreen/AdminLoginIntro';
+import AdminLoginForm from '../Components/AdminLoginScreen/AdminLoginForm';
 
 export default function AdminLoginScreen() {
   const [fullName, setFullName] = useState('');

@@ -2,7 +2,7 @@
 
 import { Text, Image, Alert, TouchableOpacity } from 'react-native';
 import imageMap from '../../utils/imageMap';
-import styles from '../../styles/ParentsHomeScreenStyle';
+import styles from './Styles/TeacherCardMiniStyle';
 
 const TeacherCardMini = ({ teacher }) => {
   const source =

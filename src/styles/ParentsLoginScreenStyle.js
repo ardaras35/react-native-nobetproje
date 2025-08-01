@@ -1,18 +1,19 @@
-// ParentsLoginScreen Style
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const ParentsLoginScreenStyle = StyleSheet.create({
+  // Ana container
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fff',
   },
+
+  // ScrollView content container
   scrollContent: {
     flexGrow: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
   },
 });
 
-
-export default styles;
+export default ParentsLoginScreenStyle;

@@ -1,6 +1,8 @@
 // Öğretmen detaylarını gösteren modal bileşeni: ad, branş, durum, telefon bilgisi ve ara/kapat butonları içerir.
 
-import { View, Text, Image, Modal, TouchableOpacity, StyleSheet, Alert, Linking } from 'react-native';
+import { View, Text, Image, Modal, TouchableOpacity, Alert, Linking } from 'react-native';
+import styles from './Styles/TeacherModalStyle';
+import { getTeacherImage } from '../../utils/imageMap';
 
 const TeacherModal = ({ visible, teacher, onClose }) => {
   const handleCall = () => {
@@ -12,9 +14,10 @@ const TeacherModal = ({ visible, teacher, onClose }) => {
     const dialNumber = `tel:${teacher.telefon}`;
 
     if (teacher?.durum === 'İzinli' || teacher?.durum === 'Derste') {
+      const durum = teacher.durum || 'Bilinmeyen durumda';
       Alert.alert(
         'Emin misiniz?',
-        `${teacher.durum} olan bir öğretmeni aramak üzeresiniz. Devam etmek istiyor musunuz?`,
+        `${durum} olan bir öğretmeni aramak üzeresiniz. Devam etmek istiyor musunuz?`,
         [
           { text: 'İptal', style: 'cancel' },
           { text: 'Ara', onPress: () => Linking.openURL(dialNumber) }
@@ -24,6 +27,12 @@ const TeacherModal = ({ visible, teacher, onClose }) => {
       Linking.openURL(dialNumber);
     }
   };
+
+    if (!visible || !teacher) {
+    return null;
+  }
+
+const imageSource = getTeacherImage(teacher.image);
 
   return (
     <Modal
@@ -35,7 +44,7 @@ const TeacherModal = ({ visible, teacher, onClose }) => {
       <View style={styles.overlay}>
         <View style={styles.content}>
           <Image
-            source={teacher?.image}
+            source={imageSource}
             style={styles.image}
           />
           <Text style={styles.name}>{teacher?.ad}</Text>

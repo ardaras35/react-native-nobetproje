@@ -2,7 +2,7 @@
 
 import { FlatList } from 'react-native';
 import FloorCard from './FloorCard';
-import styles from '../../styles/ParentsHomeScreenStyle';
+import styles from './Styles/FloorListStyle';
 
 const FloorList = ({
   teachers,

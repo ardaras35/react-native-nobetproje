@@ -1,67 +1,30 @@
-// WelcomeScreen Style bölümü.
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const WelcomeScreenStyle = StyleSheet.create({
+  // Ana container
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f8f9fa',
   },
+
+  // Inner content container
   inner: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+    justifyContent: 'space-evenly',
   },
+
+  // Ana başlık
   title: {
-    fontSize: 18,
-    textAlign: 'center',
-    marginBottom: 50,
-    color: '#000000',
-  },
-  clockContainer: {
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  timeText: {
-    fontSize: 48,
-    fontWeight: '700',
-    color: '#000000',
-    marginBottom: 4,
-  },
-  dateText: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#000000',
-  },
-  buttonContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  button: {
-    width: '80%',
-    paddingVertical: 14,
-    backgroundColor: '#000',
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  buttonSpacing: {
-    marginTop: 12,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  text: {
-    fontSize: 18,
+    color: '#333',
     textAlign: 'center',
-    marginBottom: 40,
-    color: '#000000',
-  },
-  icon: {
-    width: 140,
-    height: 140,
-    marginBottom: 140,
+    lineHeight: 32,
+    paddingHorizontal: 20,
+    marginVertical: 20,
   },
 });
 
-export default styles;
+export default WelcomeScreenStyle;

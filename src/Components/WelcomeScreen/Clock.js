@@ -1,7 +1,7 @@
 // Canlı saat ve tarih gösterimini sağlar.  Welcome Screen için.
 
 import { Text, View } from 'react-native';
-import styles from '../../styles/WelcomeScreenStyle';
+import styles from './Styles/ClockStyle';
 
 const Clock = ({ now }) => {
   const timeDisplay = now.toLocaleTimeString('tr-TR', {

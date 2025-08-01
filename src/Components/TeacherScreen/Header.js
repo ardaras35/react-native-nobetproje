@@ -1,8 +1,7 @@
-// Öğretmenler ekranı üst başlık bileşeni: Geri tuşu ve başlık içerir.
-
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+// Header.js
+import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import styles from '../../styles/TeachersScreenStyle';
+import styles from '../TeacherScreen/Styles/HeaderStyle';
 
 const Header = ({ onBack }) => {
   return (
@@ -11,7 +10,7 @@ const Header = ({ onBack }) => {
         <MaterialIcons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
       <Text style={styles.header}>Öğretmenlerimiz</Text>
-      <View style={{ width: 24 }} /> {/* Sağ boşluk dengelemesi */}
+      <View style={{ width: 24 }} />
     </View>
   );
 };

@@ -4,7 +4,7 @@
 
 import {View, Text, Modal, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles from '../../styles/AdminHomeScreenStyle';
+import styles from './Styles/AddTeacherModalStyle';
 
 const AddTeacherModal = ({
   visible,
@@ -19,8 +19,7 @@ const AddTeacherModal = ({
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.addModal}>
-          
-          {/* Modal başlığı ve kapatma tuşu */}
+
           <View style={styles.modalHeader}>
             <Text style={styles.modalTitle}>👨‍🏫 Yeni Öğretmen Ekle</Text>
             <TouchableOpacity onPress={onClose}>
@@ -28,10 +27,8 @@ const AddTeacherModal = ({
             </TouchableOpacity>
           </View>
 
-          {/* Form içeriği */}
           <ScrollView showsVerticalScrollIndicator={false}>
 
-            {/* Ad alanı */}
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Öğretmen Adı *</Text>
               <TextInput
@@ -44,7 +41,6 @@ const AddTeacherModal = ({
               />
             </View>
 
-            {/* Branş seçimi */}
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Branş *</Text>
               <View style={styles.branchGrid}>
@@ -72,7 +68,6 @@ const AddTeacherModal = ({
               </View>
             </View>
 
-            {/* Durum seçimi */}
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Başlangıç Durumu</Text>
               <View style={styles.statusGrid}>
@@ -95,7 +90,6 @@ const AddTeacherModal = ({
               </View>
             </View>
 
-            {/* Ekle butonu */}
             <TouchableOpacity style={styles.addButton} onPress={onAdd}>
               <Ionicons name="person-add" size={20} color="#fff" />
               <Text style={styles.addButtonText}>Öğretmen Ekle</Text>

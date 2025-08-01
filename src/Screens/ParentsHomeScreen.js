@@ -5,13 +5,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCurrentDateString } from '../utils/schedule';
 import useSchedule from '../hooks/useSchedule';
+import { useNavigation } from '@react-navigation/native';
+
 
 // Kullanılan component dosyaları çekiliyor.
-import FloorList from '../components/ParentsHome/FloorList';
-import ParentsHeader from '../components/ParentsHome/ParentsHeader';
+import FloorList from '../Components/ParentsHomeScreen/FloorList';
+import ParentsHeader from '../Components/ParentsHomeScreen/ParentsHeader';
 import styles from '../styles/ParentsHomeScreenStyle';
 
 export default function ParentsHomeScreen() {
+  const navigation = useNavigation();
   const [teachers, setTeachers] = useState([]);
 
   const todayDate = getCurrentDateString();
@@ -39,7 +42,7 @@ export default function ParentsHomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ParentsHeader navigation={useSchedule.navigation} />
+      <ParentsHeader navigation={navigation} />
 
       <FloorList
         teachers={teachers}

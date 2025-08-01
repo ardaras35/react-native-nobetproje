@@ -8,13 +8,13 @@ import teacherData from '../data/teacher.json';
 import styles from '../styles/AdminHomeScreenStyle';
 
 // Kullanılan component dosyaları çekiliyor.
-import AdminHeader from '../components/AdminHomeScreen/AdminHeader';
-import TeacherCard from '../components/AdminHomeScreen/TeacherCard';
-import AddTeacherModal from '../components/AdminHomeScreen/AddTeacherModal';
-import StatsModal from '../components/AdminHomeScreen/StatsModal';
-import EmptyState from '../components/AdminHomeScreen/EmptyState';
-import FilterBar from '../components/AdminHomeScreen/FilterBar';
-import ResultsHeader from '../components/AdminHomeScreen/ResultsHeader';
+import AdminHeader from '../Components/AdminHomeScreen/AdminHeader';
+import TeacherCard from '../Components/AdminHomeScreen/TeacherCard';
+import AddTeacherModal from '../Components/AdminHomeScreen/AddTeacherModal';
+import StatsModal from '../Components/AdminHomeScreen/StatsModal';
+import EmptyState from '../Components/AdminHomeScreen/EmptyState';
+import FilterBar from '../Components/AdminHomeScreen/SearchAndFilterBar';
+import ResultsHeader from '../Components/AdminHomeScreen/ResultsHeader';
 
 export default function AdminHomeScreen() {
   const [teachers, setTeachers] = useState([]);
@@ -41,15 +41,22 @@ export default function AdminHomeScreen() {
     loadData();
   }, []);
 
-  const loadData = async () => {
-    try {
-      const stored = await AsyncStorage.getItem('teachers');
-      if (stored) setTeachers(JSON.parse(stored));
-      else setTeachers(teacherData);
-    } catch (err) {
-      alert('Veri yüklenemedi.');
+ const loadData = async () => {
+  try {
+    const stored = await AsyncStorage.getItem('teachers');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed)) setTeachers(parsed);  // ✅ Sadece dizi ise set et
+      else setTeachers([]);
+    } else {
+      setTeachers(teacherData);
     }
-  };
+  } catch (err) {
+    alert('Veri yüklenemedi.');
+    setTeachers([]);  // ❗ Hata olursa boş dizi ata
+  }
+};
+
 
   const saveChanges = async () => {
     try {
@@ -122,17 +129,14 @@ export default function AdminHomeScreen() {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
-      {/* Üst başlık */}
       <AdminHeader
         onBack={() => null}
         onSave={saveChanges}
         onStats={() => setShowStatsModal(true)}
       />
 
-      {/* Arama ve filtreler */}
       <View style={styles.searchSection}>
 
-        {/* Arama kutusu */}
         <View style={styles.searchContainer}>
           <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
           <TextInput
@@ -146,7 +150,6 @@ export default function AdminHomeScreen() {
           ) : null}
         </View>
 
-        {/* Filtre butonları */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <FilterBar
             options={filterOptions}
@@ -166,13 +169,11 @@ export default function AdminHomeScreen() {
         </ScrollView>
       </View>
 
-      {/* Filtrelenmiş sonuç metni ve ekle butonu */}
       <ResultsHeader
         count={filteredTeachers.length}
         onAdd={() => setShowAddModal(true)}
       />
 
-      {/* Öğretmen Kartları */}
       <FlatList
         data={filteredTeachers}
         keyExtractor={(item) => item.id.toString()}
@@ -192,7 +193,6 @@ export default function AdminHomeScreen() {
         showsVerticalScrollIndicator={false}
       />
 
-      {/* Modal bileşenleri */}
       <StatsModal
         visible={showStatsModal}
         onClose={() => setShowStatsModal(false)}

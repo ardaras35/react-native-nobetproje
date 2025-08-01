@@ -4,12 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import styles from '../styles/TeachersScreenStyle'; 
 
 // Kullanılan component dosyaları çekiliyor.
-import TeachersHeader from '../components/Teachers/TeachersHeader';
-import TeachersList from '../components/Teachers/TeachersList';
-import TeachersModal from '../components/Teachers/TeachersModal';
-import styles from '../styles/TeachersScreenStyle';
+import Header from '../Components/TeacherScreen/Header'; 
+import TeachersList from '../Components/TeacherScreen/TeacherList'; 
+import TeacherModal from '../Components/TeacherScreen/TeacherModal'; 
 
 export default function TeachersScreen() {
   const [teachers, setTeachers] = useState([]);
@@ -49,15 +49,10 @@ export default function TeachersScreen() {
   const closeModal = () => setSelectedTeacher(null);
 
   return (
-    <SafeAreaView style={styles.container}>
-      {/* Üst Başlık */}
-      <TeachersHeader navigation={navigation} />
-
-      {/* Öğretmen Listesi */}
+    <SafeAreaView style={styles.container}> 
       <TeachersList teachers={teachers} openModal={openModal} />
 
-      {/* Detaylı Öğretmen Bilgisi Modalı */}
-      <TeachersModal
+      <TeacherModal
         visible={!!selectedTeacher}
         teacher={selectedTeacher}
         onClose={closeModal}

@@ -1,7 +1,7 @@
 //  Ana giriş butonlarını içerir: Veli Girişi, Yönetici Girişi, Öğretmenlerimiz.  Welcome Screen için.
 
 import { Pressable, Text, View } from 'react-native';
-import styles from '../../styles/WelcomeScreenStyle';
+import styles from './Styles/LoginButtonStyle';
 
 const LoginButtons = ({ onNavigate }) => {
   return (

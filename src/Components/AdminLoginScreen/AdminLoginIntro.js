@@ -1,6 +1,7 @@
 // Yönetici giriş ekranı giriş bölümü: logo (okulon.png/okuloff.png), hoşgeldiniz metni bulunmaktadır.
 
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text } from 'react-native';
+import styles from './Styles/AdminLoginIntroStyle';
 
 const AdminLoginIntro = ({ fullName }) => {
   return (

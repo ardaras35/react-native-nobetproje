@@ -2,7 +2,7 @@
 
 import { View, Text, Alert, Image, TouchableOpacity } from 'react-native';
 import imageMap from '../../utils/imageMap';
-import styles from '../../styles/ParentsHomeScreenStyle';
+import styles from './Styles/FloorCardStyle';
 
 const FloorCard = ({
   floorNumber,

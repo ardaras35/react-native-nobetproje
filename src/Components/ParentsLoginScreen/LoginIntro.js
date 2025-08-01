@@ -1,25 +1,7 @@
 // Veli girişi ekranı giriş bölümü: Logo (okulon.png/okuloff.png), açıklama metni bulunmaktadır. ParentsLoginScreen için.
 
-import { View, Image, Text, StyleSheet } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    marginBottom: 32,
-  },
-  logo: {
-    width: 140,
-    height: 140,
-    marginBottom: 24,
-  },
-  infoText: {
-    fontSize: 16,
-    color: '#000000',
-    textAlign: 'center',
-    paddingHorizontal: 16,
-  },
-});
-
+import { View, Image, Text } from 'react-native';
+import styles from './Styles/LoginIntroStyle'
 
 const LoginIntro = () => {
   return (

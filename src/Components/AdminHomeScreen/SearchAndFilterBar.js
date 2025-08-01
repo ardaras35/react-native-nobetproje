@@ -2,7 +2,7 @@
 
 import { View, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles from '../../styles/AdminHomeScreenStyle'; 
+import styles from './Styles/SearchAndFilterBarStyle'; 
 
 const SearchAndFilterBar = ({
   searchText,
@@ -16,7 +16,6 @@ const SearchAndFilterBar = ({
 }) => {
   return (
     <View style={styles.searchSection}>
-      {/* Arama Kutusu */}
       <View style={styles.searchContainer}>
         <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
         <TextInput
@@ -32,7 +31,6 @@ const SearchAndFilterBar = ({
         ) : null}
       </View>
 
-      {/* Durum Filtreleri */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
         {filterOptions.map((filter) => (
           <TouchableOpacity
@@ -55,7 +53,6 @@ const SearchAndFilterBar = ({
         ))}
       </ScrollView>
 
-      {/* Kat Filtreleri */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
         {floorOptions.map((floor) => (
           <TouchableOpacity
