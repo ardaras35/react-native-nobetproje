@@ -1,24 +1,33 @@
-// Veli Girişi Ekranı:  Geri butonu ve başlık, logo ve açıklama yazısı, isim ve numara ile giriş formu bulunmaktadır.
+// Veli girişi ekranı: geri butonu ve başlık, bilgi ve logo bölümü, ad-soyad ve numara ile giriş formu bulunmakta. 
+// ParentsLoginScreen için.
 
 import React, { useState } from 'react';
-import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, KeyboardAvoidingView, ScrollView, Platform, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styles from '../styles/ParentsLoginScreenStyle';
 import parents from '../data/parent.json';
 
-// Kullanılan component dosyaları çekiliyor.
-import LoginHeader from '../components/ParentsLogin/LoginHeader';
-import LoginIntro from '../components/ParentsLogin/LoginIntro';
-import ParentLoginForm from '../components/ParentsLogin/ParentLoginForm';
+import LoginHeader from '../components/LoginHeader';
+import LoginIntro from '../components/LoginIntro';
+import ParentLoginForm from '../components/ParentLoginForm';
 
-export default function ParentsLoginScreen() {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+});
+
+
+export default function ParentsLogin() {
   const [fullName, setFullName] = useState('');
   const [numara, setNumara] = useState('');
   const navigation = useNavigation();
-
-  /**
-   * Giriş butonuna basıldığında çalışır, ismi ayırır. JSON'dan eşleşen kullanıcıyı bulur.
-   * Başarılıysa yönlendirir, değilse uyarır **/
 
   const handleLogin = () => {
     const tokens = fullName.trim().split(/\s+/);
@@ -40,31 +49,21 @@ export default function ParentsLoginScreen() {
     if (user) {
       navigation.replace('ParentsHome', { user });
     } else {
-      Alert.alert('Hatalı Giriş', 'Girdiğiniz bilgide kayıt bulunamamıştır.');
+      alert('Hatalı Giriş', 'Girdiğiniz bilgide kayıt bulunamamıştır.');
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Üst geri butonu ve başlık */}
       <LoginHeader navigation={navigation} />
 
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          keyboardShouldPersistTaps="handled"
-        >
-          {/* Logo ve bilgi yazısı */}
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled">
           <LoginIntro />
-
-          {/* Form alanı */}
           <ParentLoginForm
             fullName={fullName}
-            setFullName={setFullName}
             numara={numara}
+            setFullName={setFullName}
             setNumara={setNumara}
             onLogin={handleLogin}
           />
@@ -73,3 +72,4 @@ export default function ParentsLoginScreen() {
     </SafeAreaView>
   );
 }
+
