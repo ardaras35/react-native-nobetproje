@@ -1,7 +1,7 @@
 // Admin Ana Ekranı: geri tuşu ve başlık, öğretmen arama ve filtreleme, durum ve kat atama, öğretmen ekleme/silme, istatistik ve boş liste durumu gibi bileşenler bulunmaktadır.
 
 import React, { useState, useEffect, useMemo } from 'react';
-import {View, FlatList, TextInput, RefreshControl, ScrollView, SafeAreaView, StatusBar } from 'react-native';
+import {View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import teacherData from '../data/teacher.json';
@@ -13,7 +13,7 @@ import TeacherCard from '../Components/AdminHomeScreen/TeacherCard';
 import AddTeacherModal from '../Components/AdminHomeScreen/AddTeacherModal';
 import StatsModal from '../Components/AdminHomeScreen/StatsModal';
 import EmptyState from '../Components/AdminHomeScreen/EmptyState';
-import FilterBar from '../Components/AdminHomeScreen/SearchAndFilterBar';
+import SearchAndFilterBar from '../Components/AdminHomeScreen/SearchAndFilterBar';
 import ResultsHeader from '../Components/AdminHomeScreen/ResultsHeader';
 
 export default function AdminHomeScreen() {
@@ -57,13 +57,12 @@ export default function AdminHomeScreen() {
   }
 };
 
-
   const saveChanges = async () => {
     try {
       await AsyncStorage.setItem('teachers', JSON.stringify(teachers));
-      alert('Kaydedildi!');
+      Alert.alert('Kaydedildi!');
     } catch {
-      alert('Hata oluştu!');
+      Alert.alert('Hata oluştu!');
     }
   };
 
@@ -125,64 +124,51 @@ export default function AdminHomeScreen() {
     setShowAddModal(false);
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-
-      <AdminHeader
-        onBack={() => null}
-        onSave={saveChanges}
-        onStats={() => setShowStatsModal(true)}
+  // FlatList Header Component - Fixed search/filters
+  const ListHeaderComponent = () => (
+    <View>
+      {/* Search and Filter Bar */}
+      <SearchAndFilterBar
+        searchText={searchText}
+        setSearchText={setSearchText}
+        filterOptions={filterOptions}
+        selectedFilter={selectedFilter}
+        setSelectedFilter={setSelectedFilter}
+        floorOptions={floorOptions}
+        selectedFloorFilter={selectedFloorFilter}
+        setSelectedFloorFilter={setSelectedFloorFilter}
       />
 
-      <View style={styles.searchSection}>
-
-        <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Öğretmen ara..."
-            value={searchText}
-            onChangeText={setSearchText}
-          />
-          {searchText ? (
-            <Ionicons name="close-circle" size={20} color="#666" onPress={() => setSearchText('')} />
-          ) : null}
-        </View>
-
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <FilterBar
-            options={filterOptions}
-            selected={selectedFilter}
-            onSelect={setSelectedFilter}
-            color="#007AFF"
-          />
-        </ScrollView>
-
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <FilterBar
-            options={floorOptions}
-            selected={selectedFloorFilter}
-            onSelect={setSelectedFloorFilter}
-            color="#FF9800"
-          />
-        </ScrollView>
-      </View>
-
+      {/* Results Header */}
       <ResultsHeader
         count={filteredTeachers.length}
         onAdd={() => setShowAddModal(true)}
       />
+    </View>
+  );
 
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
+      {/* Fixed Header - Always visible */}
+      <AdminHeader
+        onBack={() => null}
+        onSave={saveChanges}
+        onShowStats={() => setShowStatsModal(true)}
+      />
+
+      {/* Main Content - Single FlatList with header */}
       <FlatList
         data={filteredTeachers}
         keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={ListHeaderComponent}
         renderItem={({ item }) => (
           <TeacherCard
             teacher={item}
-            onUpdateStatus={updateStatus}
-            onUpdateFloor={updateFloor}
-            onDelete={removeTeacher}
+            updateStatus={updateStatus}
+            updateFloor={updateFloor}
+            removeTeacher={removeTeacher}
           />
         )}
         contentContainerStyle={styles.listContainer}
@@ -191,8 +177,11 @@ export default function AdminHomeScreen() {
         }
         ListEmptyComponent={<EmptyState />}
         showsVerticalScrollIndicator={false}
+        // Sticky header için
+        stickyHeaderIndices={[]}
       />
 
+      {/* Modals */}
       <StatsModal
         visible={showStatsModal}
         onClose={() => setShowStatsModal(false)}
@@ -203,7 +192,13 @@ export default function AdminHomeScreen() {
         onClose={() => setShowAddModal(false)}
         newTeacher={newTeacher}
         setNewTeacher={setNewTeacher}
-        addNewTeacher={addNewTeacher}
+        onAdd={addNewTeacher}
+        branches={[...new Set(teachers.map(t => t.brans))]} // Unique branches
+        statusColors={{
+          'Nöbetçi': '#4CAF50',
+          'Derste': '#2196F3', 
+          'İzinli': '#FF9800'
+        }}
       />
     </SafeAreaView>
   );

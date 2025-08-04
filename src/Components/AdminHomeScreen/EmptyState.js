@@ -1,6 +1,7 @@
 // Öğretmen listesi boş olduğunda gösterilen bileşendir.
 // Arama sonucu bulunamazsa ya da hiç öğretmen yoksa kullanıcıya bilgi verir.
 
+import { View, Text} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/EmptyStateStyle';
 
