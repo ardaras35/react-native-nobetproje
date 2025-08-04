@@ -12,8 +12,8 @@ const AddTeacherModal = ({
   onAdd,
   newTeacher,
   setNewTeacher,
-  branches,
-  statusColors
+  branches = [], 
+  statusColors = {} 
 }) => {
   return (
     <Modal visible={visible} transparent animationType="slide">
@@ -34,7 +34,7 @@ const AddTeacherModal = ({
               <TextInput
                 style={styles.textInput}
                 placeholder="Öğretmen adını girin"
-                value={newTeacher.ad}
+                value={newTeacher?.ad || ''} // Safe access
                 onChangeText={(text) =>
                   setNewTeacher((prev) => ({ ...prev, ad: text }))
                 }
@@ -44,27 +44,31 @@ const AddTeacherModal = ({
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>Branş *</Text>
               <View style={styles.branchGrid}>
-                {branches.map((branch) => (
-                  <TouchableOpacity
-                    key={branch}
-                    style={[
-                      styles.branchButton,
-                      newTeacher.brans === branch && styles.selectedBranchButton,
-                    ]}
-                    onPress={() =>
-                      setNewTeacher((prev) => ({ ...prev, brans: branch }))
-                    }
-                  >
-                    <Text
+                {branches && branches.length > 0 ? (
+                  branches.map((branch) => (
+                    <TouchableOpacity
+                      key={branch}
                       style={[
-                        styles.branchButtonText,
-                        newTeacher.brans === branch && styles.selectedBranchButtonText,
+                        styles.branchButton,
+                        newTeacher?.brans === branch && styles.selectedBranchButton,
                       ]}
+                      onPress={() =>
+                        setNewTeacher((prev) => ({ ...prev, brans: branch }))
+                      }
                     >
-                      {branch}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+                      <Text
+                        style={[
+                          styles.branchButtonText,
+                          newTeacher?.brans === branch && styles.selectedBranchButtonText,
+                        ]}
+                      >
+                        {branch}
+                      </Text>
+                    </TouchableOpacity>
+                  ))
+                ) : (
+                  <Text style={styles.noBranchesText}>Branş yüklenecek...</Text>
+                )}
               </View>
             </View>
 
@@ -76,8 +80,8 @@ const AddTeacherModal = ({
                     key={status}
                     style={[
                       styles.modalStatusButton,
-                      { backgroundColor: statusColors[status] },
-                      newTeacher.durum === status &&
+                      { backgroundColor: statusColors[status] || '#ccc' },
+                      newTeacher?.durum === status &&
                         styles.selectedModalStatusButton,
                     ]}
                     onPress={() =>
@@ -90,7 +94,14 @@ const AddTeacherModal = ({
               </View>
             </View>
 
-            <TouchableOpacity style={styles.addButton} onPress={onAdd}>
+            <TouchableOpacity 
+              style={[
+                styles.addButton,
+                (!newTeacher?.ad || !newTeacher?.brans) && styles.disabledButton
+              ]} 
+              onPress={onAdd}
+              disabled={!newTeacher?.ad || !newTeacher?.brans} 
+            >
               <Ionicons name="person-add" size={20} color="#fff" />
               <Text style={styles.addButtonText}>Öğretmen Ekle</Text>
             </TouchableOpacity>

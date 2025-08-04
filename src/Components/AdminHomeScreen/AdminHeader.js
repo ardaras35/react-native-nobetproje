@@ -1,5 +1,3 @@
-// Admin ekranı üst başlık bileşeni: geri tuşu, "Admin Panel" başlığı, istatistik ve kaydet butonları bulunmaktadır.
-
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/AdminHeaderStyle';
@@ -7,16 +5,16 @@ import styles from './Styles/AdminHeaderStyle';
 const AdminHeader = ({ navigation, onShowStats, onSave }) => {
   return (
     <View style={styles.header}>
-      
-
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+      <TouchableOpacity 
+        onPress={() => navigation.goBack()} 
+        style={styles.backButton}
+      >
         <Ionicons name="arrow-back" size={24} color="#333" />
       </TouchableOpacity>
 
       <Text style={styles.headerTitle}>Admin Panel</Text>
 
       <View style={styles.headerActions}>
-
         <TouchableOpacity onPress={onShowStats} style={styles.headerButton}>
           <Ionicons name="stats-chart" size={20} color="#007AFF" />
         </TouchableOpacity>

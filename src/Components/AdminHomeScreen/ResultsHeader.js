@@ -6,10 +6,10 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/ResultsHeaderStyle';
 
-const ResultsHeader = ({ teacherCount, onAdd }) => {
+const ResultsHeader = ({ count, onAdd }) => {
   return (
     <View style={styles.resultsHeader}>
-      <Text style={styles.resultsText}>{teacherCount} öğretmen gösteriliyor</Text>
+      <Text style={styles.resultsText}>{count} öğretmen gösteriliyor</Text>
 
       <TouchableOpacity onPress={onAdd} style={styles.addTeacherButton}>
         <Ionicons name="add" size={20} color="#007AFF" />

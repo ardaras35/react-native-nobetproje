@@ -1,8 +1,6 @@
-// Admin Paneli: arama ve filtreleme çubuğu bileşeni bulunmaktadır.
-
 import { View, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import styles from './Styles/SearchAndFilterBarStyle'; 
+import styles from './Styles/SearchAndFilterBarStyle';
 
 const SearchAndFilterBar = ({
   searchText,
@@ -23,15 +21,15 @@ const SearchAndFilterBar = ({
           placeholder="Öğretmen ara..."
           value={searchText}
           onChangeText={setSearchText}
+          placeholderTextColor="#999"
         />
-        {searchText ? (
-          <TouchableOpacity onPress={() => setSearchText('')}>
-            <Ionicons name="close-circle" size={20} color="#666" />
-          </TouchableOpacity>
-        ) : null}
       </View>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false}
+        style={styles.filtersContainer}
+      >
         {filterOptions.map((filter) => (
           <TouchableOpacity
             key={filter}
@@ -41,19 +39,21 @@ const SearchAndFilterBar = ({
             ]}
             onPress={() => setSelectedFilter(filter)}
           >
-            <Text
-              style={[
-                styles.filterButtonText,
-                selectedFilter === filter && styles.activeFilterButtonText,
-              ]}
-            >
+            <Text style={[
+              styles.filterButtonText,
+              selectedFilter === filter && styles.activeFilterButtonText,
+            ]}>
               {filter}
             </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
+      <ScrollView 
+        horizontal 
+        showsHorizontalScrollIndicator={false}
+        style={styles.filtersContainer}
+      >
         {floorOptions.map((floor) => (
           <TouchableOpacity
             key={floor}
@@ -63,12 +63,10 @@ const SearchAndFilterBar = ({
             ]}
             onPress={() => setSelectedFloorFilter(floor)}
           >
-            <Text
-              style={[
-                styles.filterButtonText,
-                selectedFloorFilter === floor && styles.activeFloorFilterButtonText,
-              ]}
-            >
+            <Text style={[
+              styles.filterButtonText,
+              selectedFloorFilter === floor && styles.activeFloorFilterButtonText,
+            ]}>
               {floor}
             </Text>
           </TouchableOpacity>

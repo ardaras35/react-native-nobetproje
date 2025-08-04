@@ -3,7 +3,6 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
 
 const AddTeacherModalStyle = StyleSheet.create({
-  // Modal overlay - arka plan
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -12,7 +11,6 @@ const AddTeacherModalStyle = StyleSheet.create({
     padding: 20,
   },
 
-  // Modal ana container
   addModal: {
     backgroundColor: '#fff',
     borderRadius: 20,
@@ -29,7 +27,6 @@ const AddTeacherModalStyle = StyleSheet.create({
     shadowRadius: 8,
   },
 
-  // Modal başlık bölümü
   modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -40,7 +37,6 @@ const AddTeacherModalStyle = StyleSheet.create({
     borderBottomColor: '#f0f0f0',
   },
 
-  // Modal başlık metni
   modalTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -48,12 +44,10 @@ const AddTeacherModalStyle = StyleSheet.create({
     flex: 1,
   },
 
-  // Input grup container
   inputGroup: {
     marginBottom: 20,
   },
 
-  // Input label
   inputLabel: {
     fontSize: 16,
     fontWeight: '600',
@@ -61,7 +55,6 @@ const AddTeacherModalStyle = StyleSheet.create({
     marginBottom: 8,
   },
 
-  // Text input
   textInput: {
     borderWidth: 1,
     borderColor: '#ddd',
@@ -72,14 +65,12 @@ const AddTeacherModalStyle = StyleSheet.create({
     color: '#333',
   },
 
-  // Branş grid container
   branchGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
   },
 
-  // Branş button
   branchButton: {
     backgroundColor: '#f0f0f0',
     paddingHorizontal: 16,
@@ -91,33 +82,28 @@ const AddTeacherModalStyle = StyleSheet.create({
     alignItems: 'center',
   },
 
-  // Seçili branş button
   selectedBranchButton: {
     backgroundColor: '#007AFF',
     borderColor: '#007AFF',
   },
 
-  // Branş button text
   branchButtonText: {
     fontSize: 14,
     color: '#666',
     fontWeight: '500',
   },
 
-  // Seçili branş button text
   selectedBranchButtonText: {
     color: '#fff',
     fontWeight: '600',
   },
 
-  // Status grid container
   statusGrid: {
     flexDirection: 'row',
     gap: 10,
     flexWrap: 'wrap',
   },
 
-  // Modal status button
   modalStatusButton: {
     paddingHorizontal: 16,
     paddingVertical: 12,
@@ -127,21 +113,18 @@ const AddTeacherModalStyle = StyleSheet.create({
     opacity: 0.8,
   },
 
-  // Seçili modal status button
   selectedModalStatusButton: {
     opacity: 1,
     borderWidth: 2,
     borderColor: '#333',
   },
 
-  // Modal status button text
   modalStatusButtonText: {
     color: '#fff',
     fontWeight: '600',
     fontSize: 14,
   },
 
-  // Add button
   addButton: {
     backgroundColor: '#28a745',
     flexDirection: 'row',
@@ -153,11 +136,22 @@ const AddTeacherModalStyle = StyleSheet.create({
     gap: 8,
   },
 
-  // Add button text
+  disabledButton: {
+    backgroundColor: '#ccc',
+    opacity: 0.5,
+  },
+
   addButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+
+  noBranchesText: {
+    color: '#999',
+    fontSize: 14,
+    textAlign: 'center',
+    padding: 10,
   },
 });
 
