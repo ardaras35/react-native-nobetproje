@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
+<<<<<<< HEAD
 import { View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert, TouchableOpacity } from 'react-native';
+=======
+import {View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert } from 'react-native';
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import teacherData from '../data/teacher.json';
@@ -53,7 +57,15 @@ export default function AdminHomeScreen() {
       alert('Veri yüklenemedi.');
       setTeachers([]);
     }
+<<<<<<< HEAD
   };
+=======
+  } catch (err) {
+    alert('Veri yüklenemedi.');
+    setTeachers([]);  // ❗ Hata olursa boş dizi ata
+  }
+};
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
 
   const saveChanges = async () => {
     try {
@@ -122,8 +134,15 @@ export default function AdminHomeScreen() {
     setShowAddModal(false);
   };
 
+<<<<<<< HEAD
   const ListHeaderComponent = () => (
     <View>
+=======
+  // FlatList Header Component - Fixed search/filters
+  const ListHeaderComponent = () => (
+    <View>
+      {/* Search and Filter Bar */}
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
       <SearchAndFilterBar
         searchText={searchText}
         setSearchText={setSearchText}
@@ -134,6 +153,7 @@ export default function AdminHomeScreen() {
         selectedFloorFilter={selectedFloorFilter}
         setSelectedFloorFilter={setSelectedFloorFilter}
       />
+<<<<<<< HEAD
       <ResultsHeader
         count={filteredTeachers.length}
         onAdd={() => setShowAddModal(true)}
@@ -149,13 +169,35 @@ export default function AdminHomeScreen() {
         navigation={navigation}
         onSave={saveChanges}
         onShowStats={() => setShowStatsModal(true)}
+=======
+
+      {/* Results Header */}
+      <ResultsHeader
+        count={filteredTeachers.length}
+        onAdd={() => setShowAddModal(true)}
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
+      />
+    </View>
+  );
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
+      {/* Fixed Header - Always visible */}
+      <AdminHeader
+        onBack={() => null}
+        onSave={saveChanges}
+        onShowStats={() => setShowStatsModal(true)}
       />
 
+      {/* Main Content - Single FlatList with header */}
       <FlatList
         data={filteredTeachers}
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={({ item }) => (
+<<<<<<< HEAD
           <TouchableOpacity onPress={() => setSelectedTeacher(item)}>
             <TeacherCard
               teacher={item}
@@ -164,6 +206,14 @@ export default function AdminHomeScreen() {
               removeTeacher={removeTeacher}
             />
           </TouchableOpacity>
+=======
+          <TeacherCard
+            teacher={item}
+            updateStatus={updateStatus}
+            updateFloor={updateFloor}
+            removeTeacher={removeTeacher}
+          />
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
         )}
         contentContainerStyle={styles.listContainer}
         refreshControl={
@@ -171,8 +221,11 @@ export default function AdminHomeScreen() {
         }
         ListEmptyComponent={<EmptyState />}
         showsVerticalScrollIndicator={false}
+        // Sticky header için
+        stickyHeaderIndices={[]}
       />
 
+<<<<<<< HEAD
       <SharedTeacherModal
         visible={!!selectedTeacher}
         teacher={selectedTeacher}
@@ -183,6 +236,9 @@ export default function AdminHomeScreen() {
         isAdminMode={true}
       />
       
+=======
+      {/* Modals */}
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
       <StatsModal
         visible={showStatsModal}
         onClose={() => setShowStatsModal(false)}
@@ -195,7 +251,11 @@ export default function AdminHomeScreen() {
         newTeacher={newTeacher}
         setNewTeacher={setNewTeacher}
         onAdd={addNewTeacher}
+<<<<<<< HEAD
         branches={[...new Set(teachers.map(t => t.brans))]}
+=======
+        branches={[...new Set(teachers.map(t => t.brans))]} // Unique branches
+>>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
         statusColors={{
           'Nöbetçi': '#4CAF50',
           'Derste': '#2196F3', 

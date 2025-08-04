@@ -1,6 +1,10 @@
-import { View, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
+// Admin Ana Ekranı: geri tuşu ve başlık, öğretmen arama ve filtreleme, durum ve kat atama, öğretmen ekleme/silme, istatistik ve boş liste durumu gibi bileşenler bulunmaktadır.
+
+import React, { useState, useEffect, useMemo } from 'react';
+import {View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import styles from './Styles/SearchAndFilterBarStyle';
+import styles from './Styles/SearchAndFilterBarStyle'; 
 
 const SearchAndFilterBar = ({
   searchText,
@@ -21,15 +25,15 @@ const SearchAndFilterBar = ({
           placeholder="Öğretmen ara..."
           value={searchText}
           onChangeText={setSearchText}
-          placeholderTextColor="#999"
         />
+        {searchText ? (
+          <TouchableOpacity onPress={() => setSearchText('')}>
+            <Ionicons name="close-circle" size={20} color="#666" />
+          </TouchableOpacity>
+        ) : null}
       </View>
 
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false}
-        style={styles.filtersContainer}
-      >
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
         {filterOptions.map((filter) => (
           <TouchableOpacity
             key={filter}
@@ -39,21 +43,19 @@ const SearchAndFilterBar = ({
             ]}
             onPress={() => setSelectedFilter(filter)}
           >
-            <Text style={[
-              styles.filterButtonText,
-              selectedFilter === filter && styles.activeFilterButtonText,
-            ]}>
+            <Text
+              style={[
+                styles.filterButtonText,
+                selectedFilter === filter && styles.activeFilterButtonText,
+              ]}
+            >
               {filter}
             </Text>
           </TouchableOpacity>
         ))}
       </ScrollView>
 
-      <ScrollView 
-        horizontal 
-        showsHorizontalScrollIndicator={false}
-        style={styles.filtersContainer}
-      >
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
         {floorOptions.map((floor) => (
           <TouchableOpacity
             key={floor}
@@ -63,10 +65,12 @@ const SearchAndFilterBar = ({
             ]}
             onPress={() => setSelectedFloorFilter(floor)}
           >
-            <Text style={[
-              styles.filterButtonText,
-              selectedFloorFilter === floor && styles.activeFloorFilterButtonText,
-            ]}>
+            <Text
+              style={[
+                styles.filterButtonText,
+                selectedFloorFilter === floor && styles.activeFloorFilterButtonText,
+              ]}
+            >
               {floor}
             </Text>
           </TouchableOpacity>
