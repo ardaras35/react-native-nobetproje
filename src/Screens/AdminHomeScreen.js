@@ -1,14 +1,12 @@
+// Admin Ana Ekranı: geri tuşu ve başlık, öğretmen arama ve filtreleme, durum ve kat atama, öğretmen ekleme/silme, istatistik ve boş liste durumu gibi bileşenler bulunmaktadır.
+
 import React, { useState, useEffect, useMemo } from 'react';
-<<<<<<< HEAD
-import { View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert, TouchableOpacity } from 'react-native';
-=======
 import {View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert } from 'react-native';
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 import teacherData from '../data/teacher.json';
 import styles from '../styles/AdminHomeScreenStyle';
 
+// Kullanılan component dosyaları çekiliyor.
 import AdminHeader from '../Components/AdminHomeScreen/AdminHeader';
 import TeacherCard from '../Components/AdminHomeScreen/TeacherCard';
 import AddTeacherModal from '../Components/AdminHomeScreen/AddTeacherModal';
@@ -16,17 +14,14 @@ import StatsModal from '../Components/AdminHomeScreen/StatsModal';
 import EmptyState from '../Components/AdminHomeScreen/EmptyState';
 import SearchAndFilterBar from '../Components/AdminHomeScreen/SearchAndFilterBar';
 import ResultsHeader from '../Components/AdminHomeScreen/ResultsHeader';
-import SharedTeacherModal from '../Components/SharedTeacherModal';
 
 export default function AdminHomeScreen() {
-  const navigation = useNavigation();
   const [teachers, setTeachers] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('Tümü');
   const [selectedFloorFilter, setSelectedFloorFilter] = useState('Tümü');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showStatsModal, setShowStatsModal] = useState(false);
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [newTeacher, setNewTeacher] = useState({
     ad: '',
@@ -36,36 +31,30 @@ export default function AdminHomeScreen() {
     image: null,
   });
 
+  // Sabitler
   const filterOptions = ['Tümü', 'Nöbetçi', 'Derste', 'İzinli'];
   const floorOptions = ['Tümü', '1. Kat', '2. Kat', '3. Kat', '4. Kat', '5. Kat'];
 
+  // Öğretmen verilerini yükle
   useEffect(() => {
     loadData();
   }, []);
 
-  const loadData = async () => {
-    try {
-      const stored = await AsyncStorage.getItem('teachers');
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) setTeachers(parsed);
-        else setTeachers([]);
-      } else {
-        setTeachers(teacherData);
-      }
-    } catch (err) {
-      alert('Veri yüklenemedi.');
-      setTeachers([]);
+ const loadData = async () => {
+  try {
+    const stored = await AsyncStorage.getItem('teachers');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed)) setTeachers(parsed);  // ✅ Sadece dizi ise set et
+      else setTeachers([]);
+    } else {
+      setTeachers(teacherData);
     }
-<<<<<<< HEAD
-  };
-=======
   } catch (err) {
     alert('Veri yüklenemedi.');
     setTeachers([]);  // ❗ Hata olursa boş dizi ata
   }
 };
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
 
   const saveChanges = async () => {
     try {
@@ -82,17 +71,17 @@ export default function AdminHomeScreen() {
     setRefreshing(false);
   };
 
+  // Filtrelenmiş öğretmen listesi
   const filteredTeachers = useMemo(() => {
     return teachers.filter((t) => {
-      const search = t.ad.toLowerCase().includes(searchText.toLowerCase()) || 
-                   t.brans.toLowerCase().includes(searchText.toLowerCase());
+      const search = t.ad.toLowerCase().includes(searchText.toLowerCase()) || t.brans.toLowerCase().includes(searchText.toLowerCase());
       const status = selectedFilter === 'Tümü' || t.durum === selectedFilter;
-      const floor = selectedFloorFilter === 'Tümü' || 
-                   t.kat === parseInt(selectedFloorFilter.charAt(0));
+      const floor = selectedFloorFilter === 'Tümü' || t.kat === parseInt(selectedFloorFilter.charAt(0));
       return search && status && floor;
     });
   }, [teachers, searchText, selectedFilter, selectedFloorFilter]);
 
+  // İstatistik hesaplama
   const statistics = useMemo(() => {
     const stats = {
       total: teachers.length,
@@ -134,15 +123,10 @@ export default function AdminHomeScreen() {
     setShowAddModal(false);
   };
 
-<<<<<<< HEAD
-  const ListHeaderComponent = () => (
-    <View>
-=======
   // FlatList Header Component - Fixed search/filters
   const ListHeaderComponent = () => (
     <View>
       {/* Search and Filter Bar */}
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
       <SearchAndFilterBar
         searchText={searchText}
         setSearchText={setSearchText}
@@ -153,29 +137,11 @@ export default function AdminHomeScreen() {
         selectedFloorFilter={selectedFloorFilter}
         setSelectedFloorFilter={setSelectedFloorFilter}
       />
-<<<<<<< HEAD
-      <ResultsHeader
-        count={filteredTeachers.length}
-        onAdd={() => setShowAddModal(true)}
-      />
-    </View>
-  );
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
-
-      <AdminHeader
-        navigation={navigation}
-        onSave={saveChanges}
-        onShowStats={() => setShowStatsModal(true)}
-=======
 
       {/* Results Header */}
       <ResultsHeader
         count={filteredTeachers.length}
         onAdd={() => setShowAddModal(true)}
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
       />
     </View>
   );
@@ -197,23 +163,12 @@ export default function AdminHomeScreen() {
         keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={ListHeaderComponent}
         renderItem={({ item }) => (
-<<<<<<< HEAD
-          <TouchableOpacity onPress={() => setSelectedTeacher(item)}>
-            <TeacherCard
-              teacher={item}
-              updateStatus={updateStatus}
-              updateFloor={updateFloor}
-              removeTeacher={removeTeacher}
-            />
-          </TouchableOpacity>
-=======
           <TeacherCard
             teacher={item}
             updateStatus={updateStatus}
             updateFloor={updateFloor}
             removeTeacher={removeTeacher}
           />
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
         )}
         contentContainerStyle={styles.listContainer}
         refreshControl={
@@ -225,37 +180,19 @@ export default function AdminHomeScreen() {
         stickyHeaderIndices={[]}
       />
 
-<<<<<<< HEAD
-      <SharedTeacherModal
-        visible={!!selectedTeacher}
-        teacher={selectedTeacher}
-        onClose={() => setSelectedTeacher(null)}
-        onStatusChange={updateStatus}
-        onFloorChange={updateFloor}
-        onDelete={removeTeacher}
-        isAdminMode={true}
-      />
-      
-=======
       {/* Modals */}
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
       <StatsModal
         visible={showStatsModal}
         onClose={() => setShowStatsModal(false)}
         statistics={statistics}
       />
-      
       <AddTeacherModal
         visible={showAddModal}
         onClose={() => setShowAddModal(false)}
         newTeacher={newTeacher}
         setNewTeacher={setNewTeacher}
         onAdd={addNewTeacher}
-<<<<<<< HEAD
-        branches={[...new Set(teachers.map(t => t.brans))]}
-=======
         branches={[...new Set(teachers.map(t => t.brans))]} // Unique branches
->>>>>>> e4baae747b51bf9ead8ba301ef036efe6c4d6956
         statusColors={{
           'Nöbetçi': '#4CAF50',
           'Derste': '#2196F3', 

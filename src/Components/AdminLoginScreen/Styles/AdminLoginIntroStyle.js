@@ -10,8 +10,8 @@ const AdminLoginIntroStyle = StyleSheet.create({
 
   // Logo
   logo: {
-    width: 120,
-    height: 120,
+    width: 140,
+    height: 140,
     marginBottom: 30,
   },
 

@@ -25,4 +25,12 @@ export default StyleSheet.create({
     fontWeight: '600',
     fontSize: 16,
   },
-});
+  label: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 8,
+    marginTop: 15,
+  },
+}
+);

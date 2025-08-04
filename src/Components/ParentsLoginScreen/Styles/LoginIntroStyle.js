@@ -11,19 +11,20 @@ const ParentsLoginIntroStyle = StyleSheet.create({
 
   // Logo
   logo: {
-    width: 140,
-    height: 140,
-    marginBottom: 24,
+    width: 150,
+    height: 150,
+    marginBottom: 74,
   },
 
   // Bilgi metni
   infoText: {
     fontSize: 16,
-    color: '#666',
+    color: '#666666',
     textAlign: 'center',
     lineHeight: 24,
     paddingHorizontal: 16,
     maxWidth: 300,
+    fontWeight:'bold'
   },
 });
 

@@ -1,8 +1,5 @@
-// Admin Ana Ekranı: geri tuşu ve başlık, öğretmen arama ve filtreleme, durum ve kat atama, öğretmen ekleme/silme, istatistik ve boş liste durumu gibi bileşenler bulunmaktadır.
-
-import React, { useState, useEffect, useMemo } from 'react';
-import {View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/TeacherCardStyle';
 import { getTeacherImage } from '../../utils/imageMap'; 

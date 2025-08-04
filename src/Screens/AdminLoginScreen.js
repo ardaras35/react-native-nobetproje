@@ -26,14 +26,14 @@ export default function AdminLoginScreen() {
       return alert('Eksik Bilgi', 'Lütfen girdiğiniz bilgileri kontrol edin.');
     }
 
-    const lastName = tokens.pop().toLowerCase();
-    const firstName = tokens.join(' ').toLowerCase();
+    const lastName = tokens.pop().toLocaleLowerCase('tr-TR');
+    const firstName = tokens.join(' ').toLocaleLowerCase('tr-TR');
     const pass = password.trim();
 
     const user = admin.find(
       a =>
-        a.isim.toLowerCase() === firstName &&
-        a.soyisim.toLowerCase() === lastName &&
+        a.isim.toLocaleLowerCase('tr-TR') === firstName &&
+        a.soyisim.toLocaleLowerCase('tr-TR') === lastName &&
         a.password === pass
     );
 

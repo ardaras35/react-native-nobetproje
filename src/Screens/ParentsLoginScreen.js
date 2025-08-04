@@ -28,8 +28,8 @@ export default function ParentsLoginScreen() {
 
     const user = parents.find(
       a =>
-        a.isim.toLowerCase() === firstName &&
-        a.soyisim.toLowerCase() === lastName &&
+        a.isim.toLocaleLowerCase('tr-TR') === firstName &&
+        a.soyisim.toLocaleLowerCase('tr-TR') === lastName &&
         a.password === pass
     );
 
