@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import styles from './Styles/FloorCardStyle';
 
-// Import edilen componentler
+import FloorCardHeader from './FloorCardComponents/FloorCardHeader';
 import TeacherRow from './FloorCardComponents/TeacherRow';
 import SchoolTimer from './FloorCardComponents/SchoolTimer';
+import TeacherFilterHelper from './FloorCardComponents/TeacherFilterHelper';
 
 const FloorCard = ({
   floorNumber,
@@ -15,13 +15,14 @@ const FloorCard = ({
   minutesToNextClass,
   minutesToNextBreak,
 }) => {
-  const floorTeachers = teachers.filter(
-    t => t.kat === floorNumber && t.durum !== 'İzinli'
-  );
+  const floorTeachers = TeacherFilterHelper.getFloorTeachers(teachers, floorNumber);
 
   return (
     <View style={styles.floorCard}>
-      <Text style={styles.floorTitle}>{floorNumber}. Kat</Text>
+      <FloorCardHeader 
+        floorNumber={floorNumber}
+        styles={styles}
+      />
       
       <TeacherRow 
         teachers={floorTeachers}

@@ -1,5 +1,4 @@
-// Tüm katları listeleyen bileşen: her kat için FloorCard render eder.
-
+import React, { useMemo } from 'react';
 import { FlatList } from 'react-native';
 import FloorCard from './FloorCard';
 import styles from './Styles/FloorListStyle';
@@ -12,7 +11,10 @@ const FloorList = ({
   minutesToNextClass,
   minutesToNextBreak,
 }) => {
-  const renderItem = ({ item }) => (
+  
+  const floors = useMemo(() => [5, 4, 3, 2, 1], []);
+
+  const renderFloorCard = ({ item }) => (
     <FloorCard
       floorNumber={item}
       teachers={teachers}
@@ -26,10 +28,15 @@ const FloorList = ({
 
   return (
     <FlatList
-      data={[5, 4, 3, 2, 1]} // Katlar
-      renderItem={renderItem}
-      keyExtractor={(item) => item.toString()}
+      data={floors}
+      renderItem={renderFloorCard}
+      keyExtractor={(item) => `floor-${item}`}
       contentContainerStyle={styles.list}
+      showsVerticalScrollIndicator={false}
+      removeClippedSubviews={true}
+      initialNumToRender={5}
+      maxToRenderPerBatch={5}
+      windowSize={10}
     />
   );
 };

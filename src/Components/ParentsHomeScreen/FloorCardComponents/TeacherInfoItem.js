@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import imageMap from '../../../utils/imageMap';
 
