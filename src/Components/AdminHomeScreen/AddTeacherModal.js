@@ -34,7 +34,7 @@ const AddTeacherModal = ({
               <TextInput
                 style={styles.textInput}
                 placeholder="Öğretmen adını girin"
-                value={newTeacher?.ad || ''} // Safe access
+                value={newTeacher?.ad || ''} 
                 onChangeText={(text) =>
                   setNewTeacher((prev) => ({ ...prev, ad: text }))
                 }

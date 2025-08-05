@@ -1,6 +1,8 @@
-import { View, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import styles from './Styles/SearchAndFilterBarStyle'; 
+import { View } from 'react-native';
+import styles from './Styles/SearchAndFilterBarStyle';
+
+import SearchInput from './SearchAndFilterBarComponents/SearchInput';
+import FilterChips from './SearchAndFilterBarComponents/FilterChips';
 
 const SearchAndFilterBar = ({
   searchText,
@@ -14,68 +16,32 @@ const SearchAndFilterBar = ({
 }) => {
   return (
     <View style={styles.searchSection}>
-      <View style={styles.searchContainer}>
-        <Ionicons name="search" size={20} color="#666" style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Öğretmen ara..."
-          value={searchText}
-          onChangeText={setSearchText}
-        />
-        {searchText ? (
-          <TouchableOpacity onPress={() => setSearchText('')}>
-            <Ionicons name="close-circle" size={20} color="#666" />
-          </TouchableOpacity>
-        ) : null}
-      </View>
+      
+      <SearchInput
+        searchText={searchText}
+        setSearchText={setSearchText}
+        placeholder="Öğretmen ara..."
+        styles={styles}
+      />
 
-      {filterOptions && filterOptions.length > 0 && (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
-          {filterOptions.map((filter) => (
-            <TouchableOpacity
-              key={filter}
-              style={[
-                styles.filterButton,
-                selectedFilter === filter && styles.activeFilterButton,
-              ]}
-              onPress={() => setSelectedFilter(filter)}
-            >
-              <Text
-                style={[
-                  styles.filterButtonText,
-                  selectedFilter === filter && styles.activeFilterButtonText,
-                ]}
-              >
-                {filter}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      )}
+      <FilterChips
+        options={filterOptions}
+        selectedOption={selectedFilter}
+        setSelectedOption={setSelectedFilter}
+        styles={styles}
+        activeButtonStyle="activeFilterButton"
+        activeTextStyle="activeFilterButtonText"
+      />
 
-      {floorOptions && floorOptions.length > 0 && (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.filtersContainer}>
-          {floorOptions.map((floor) => (
-            <TouchableOpacity
-              key={floor}
-              style={[
-                styles.filterButton,
-                selectedFloorFilter === floor && styles.activeFloorFilterButton,
-              ]}
-              onPress={() => setSelectedFloorFilter(floor)}
-            >
-              <Text
-                style={[
-                  styles.filterButtonText,
-                  selectedFloorFilter === floor && styles.activeFloorFilterButtonText,
-                ]}
-              >
-                {floor}
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      )}
+      <FilterChips
+        options={floorOptions}
+        selectedOption={selectedFloorFilter}
+        setSelectedOption={setSelectedFloorFilter}
+        styles={styles}
+        activeButtonStyle="activeFloorFilterButton"
+        activeTextStyle="activeFloorFilterButtonText"
+      />
+
     </View>
   );
 };

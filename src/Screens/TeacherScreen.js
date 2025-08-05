@@ -6,7 +6,7 @@ import styles from '../styles/TeachersScreenStyle';
 
 import Header from '../Components/TeacherScreen/Header'; 
 import TeachersList from '../Components/TeacherScreen/TeacherList'; 
-import SharedTeacherModal from '../Components/SharedTeacherModal'; 
+import SharedTeacherModal from '../Components/CardStructure/SharedTeacherModal'; 
 
 export default function TeachersScreen() {
   const [teachers, setTeachers] = useState([]);

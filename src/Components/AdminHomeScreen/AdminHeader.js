@@ -1,8 +1,12 @@
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import styles from './Styles/AdminHeaderStyle';
 
-const AdminHeader = ({ navigation, onShowStats, onSave }) => {
+const AdminHeader = ({ onShowStats, onSave }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.header}>
       <TouchableOpacity 
