@@ -3,29 +3,30 @@ import { useTranslation } from 'react-i18next';
 import { View, Text } from 'react-native';
 import StatusStatsItem from './StatusStatsItem';
 
-const statusColors = {
-  'nobetci': '#4CAF50',
-  'Derste': '#2196F3',
-  'İzinli': '#FF9800'
-};
-
 const StatusDistribution = ({ statistics, styles }) => {
   const { t } = useTranslation();
+  
+  const statusColors = {
+    [t('nobetci')]: '#4CAF50',
+    [t('derste')]: '#2196F3',
+    [t('izinli')]: '#FF9800'
+  };
+
   const statusData = [
     { 
       status: t('nobetci'), 
       count: statistics?.nobetci, 
-      color: statusColors['nobetci']
+      color: statusColors[t('nobetci')]
     },
     { 
-      status: 'Derste', 
+      status: t('derste'), 
       count: statistics?.derste, 
-      color: statusColors['Derste']
+      color: statusColors[t('derste')]
     },
     { 
-      status: 'İzinli', 
+      status: t('izinli'), 
       count: statistics?.izinli, 
-      color: statusColors['İzinli']
+      color: statusColors[t('izinli')]
     }
   ];
 

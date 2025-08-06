@@ -1,23 +1,23 @@
 import { Alert, Linking } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import i18n from '../../../i18n/index';
 
 const ModalCallHandler = {
   handleCall: (teacher) => {
     if (!teacher?.telefon) {
-      Alert.alert(t('uyari'), t('telefon_numarasi_bulunamadi'));
+      Alert.alert(i18n.t('uyari'), i18n.t('telefon_numarasi_bulunamadi'));
       return;
     }
 
     const dialNumber = `tel:${teacher.telefon}`;
 
-    if (teacher?.durum === 'İzinli' || teacher?.durum === 'Derste') {
-      const durum = teacher.durum || 'Bilinmeyen durumda';
+    if (teacher?.durum === i18n.t('izinli') || teacher?.durum === i18n.t('derste')) {
+      const durum = teacher.durum || i18n.t('bilinmeyen_durumda');
       Alert.alert(
-        'Emin misiniz?',
-        `${durum} olan bir öğretmeni aramak üzeresiniz. Devam etmek istiyor musunuz?`,
+        i18n.t('emin_misiniz'),
+        i18n.t('durum_olan_ogretmeni_aramak', { durum }),
         [
-          { text: 'İptal', style: 'cancel' },
-          { text: 'Ara', onPress: () => Linking.openURL(dialNumber) }
+          { text: i18n.t('iptal'), style: 'cancel' },
+          { text: i18n.t('ara'), onPress: () => Linking.openURL(dialNumber) }
         ]
       );
     } else {
@@ -27,12 +27,12 @@ const ModalCallHandler = {
 
   handleDelete: (teacher, onDelete, onClose) => {
     Alert.alert(
-      t('ogretmeni_sil'),
-      `${teacher.ad} adlı öğretmeni silmek istediğinizden emin misiniz?`,
+      i18n.t('ogretmen_silme_onay'),
+      i18n.t('ogretmeni_silmek_istediginizden_emin', { name: teacher.ad }),
       [
-        { text: 'İptal', style: 'cancel' },
+        { text: i18n.t('iptal'), style: 'cancel' },
         { 
-          text: 'Sil', 
+          text: i18n.t('sil'), 
           style: 'destructive', 
           onPress: () => {
             onDelete?.(teacher.id);

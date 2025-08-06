@@ -9,8 +9,9 @@ const SchoolTimer = ({
   minutesToNextBreak, 
   styles 
 }) => {
-  const getTimerText = () => {
   const { t } = useTranslation();
+
+  const getTimerText = () => {
     const hour = now.getHours();
     const isWeekend = [0, 6].includes(now.getDay());
 
@@ -26,28 +27,28 @@ const SchoolTimer = ({
 
     if (!currentSlot) {
       return minutesToNextClass !== null
-        ? `Derse başlamak için ${minutesToNextClass} dakika kaldı.`
+        ? t('derse_baslamak_icin_dakika_kaldi', { minutes: minutesToNextClass })
         : t('ders_programi_yukleniyor');
     }
 
     switch (currentSlot.type) {
       case 'class':
         return minutesToNextBreak !== null
-          ? `Teneffüse ${minutesToNextBreak} dakika kaldı.`
-          : 'Ders devam ediyor.';
+          ? t('teneffuse_dakika_kaldi', { minutes: minutesToNextBreak })
+          : t('su_an_ders_devam_ediyor');
       
       case 'break':
         return minutesToNextClass !== null
-          ? `Derse ${minutesToNextClass} dakika kaldı.`
-          : t('teneffus_zamani');
+          ? t('derse_dakika_kaldi', { minutes: minutesToNextClass })
+          : t('su_an_teneffus_zamani');
       
       case 'lunch':
         return minutesToNextClass !== null
-          ? `Öğle arasındadır, derse ${minutesToNextClass} dakika kaldı.`
-          : t('ogle_arasi');
+          ? t('ogle_arasi_derse_dakika_kaldi', { minutes: minutesToNextClass })
+          : t('su_an_ogle_arasi');
       
       default:
-        return 'Bilinmeyen durum.';
+        return t('bilinmeyen_durum');
     }
   };
 

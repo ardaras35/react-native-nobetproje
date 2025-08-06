@@ -6,14 +6,14 @@ import imageMap from '../../utils/imageMap';
 import styles from './Styles/TeacherCardMiniStyle';
 
 const TeacherCardMini = ({ teacher }) => {
+  const { t } = useTranslation();
   const source =
     imageMap[teacher?.image?.replace('.png', '')] || require('../../../assets/default.png');
 
   const showDetails = () => {
-  const { t } = useTranslation();
     Alert.alert(
-      {t('ogretmen_bilgisi')},
-      `${teacher.ad}\n${teacher.brans}\nDurum: ${teacher.durum}`
+      t('ogretmen_bilgisi'),
+      `${teacher.ad}\n${teacher.brans}\n${t('durum')}: ${teacher.durum}`
     );
   };
 

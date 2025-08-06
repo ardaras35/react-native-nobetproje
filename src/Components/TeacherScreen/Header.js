@@ -1,10 +1,11 @@
-// Header.js
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { MaterialIcons } from '@expo/vector-icons';
 import styles from '../TeacherScreen/Styles/HeaderStyle';
 
 const Header = ({ onBack }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity onPress={onBack}>

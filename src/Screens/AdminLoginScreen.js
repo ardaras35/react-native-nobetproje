@@ -1,31 +1,24 @@
-// Yönetici Giriş Ekranı: geri tuşu ve başlık,  logo, hoş geldiniz metni, ad soyad ve şifre formu bulunmaktadır.
-
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import admin from '../data/admin.json';
 import styles from '../styles/AdminLoginScreenStyle';
 
-
-// Kullanılan component dosyaları çekiliyor.
 import AdminLoginHeader from '../Components/AdminLoginScreen/AdminLoginHeader';
 import AdminLoginIntro from '../Components/AdminLoginScreen/AdminLoginIntro';
 import AdminLoginForm from '../Components/AdminLoginScreen/AdminLoginForm';
 
 export default function AdminLoginScreen() {
+  const { t } = useTranslation();
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  /** Giriş işlemini kontrol eder: Ad soyad input'unu parçalar, JSON'daki kullanıcıyla eşleştirir.
-      Başarılıysa yönlendirir **/
-
   const handlePress = () => {
-  const { t } = useTranslation();
     const tokens = fullName.trim().split(/\s+/);
     if (tokens.length < 2 || !password.trim()) {
-      return alert('Eksik Bilgi: ' + t('lutfen_girdiginiz_bilgileri_ko'));
+      return Alert.alert(t('eksik_bilgi'), t('lutfen_girdiginiz_bilgileri_ko'));
     }
 
     const lastName = tokens.pop().toLocaleLowerCase('tr-TR');
@@ -42,7 +35,7 @@ export default function AdminLoginScreen() {
     if (user) {
       navigation.replace('AdminHome', { user });
     } else {
-      alert(t('hatali_giris') + '\n' + t('girdiginiz_bilgide_kayit_bulun'));
+      Alert.alert(t('hatali_giris'), t('girdiginiz_bilgide_kayit_bulun'));
       setPassword('');
     }
   };
@@ -73,4 +66,3 @@ export default function AdminLoginScreen() {
     </SafeAreaView>
   );
 }
-

@@ -1,20 +1,21 @@
 import { isWeekend } from '../../../utils/schedule';
 import TimeCalculator from './TimeCalculator';
+import i18n from '../../../i18n';
 
 const SchoolClosedMessage = {
   getMessage: (now) => {
     if (isWeekend(now)) {
-      return t('okulumuz_hafta_sonu_kapalidir');
+      return i18n.t('okulumuz_hafta_sonu_kapalidir');
     }
 
     const currentHour = now.getHours();
     
     if (currentHour < 9) {
       const { hours, minutes } = TimeCalculator.getTimeUntilSchoolOpens(now);
-      return `Okulun açılmasına: ${hours} saat ${minutes} dakika kaldı.`;
+      return i18n.t('okulun_acilmasina_saat_dakika', { hours, minutes });
     }
     
-    return t('okulumuz_bugun_icin_kapandi');
+    return i18n.t('okulumuz_bugun_icin_kapandi');
   }
 };
 

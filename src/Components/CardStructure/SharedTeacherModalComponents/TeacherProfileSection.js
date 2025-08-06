@@ -1,13 +1,15 @@
 import { View, Text, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { getTeacherImage } from '../../../utils/imageMap';
+
 const TeacherProfileSection = ({ teacher, styles }) => {
+  const { t } = useTranslation();
   const imageSource = getTeacherImage(teacher.image);
   
   const statusColors = {
     [t('nobetci')]: '#040704ff',
-    'Derste': '#2196F3',
-    'İzinli': '#FF9800'
+    [t('derste')]: '#2196F3',
+    [t('izinli')]: '#FF9800'
   };
 
   return (
@@ -24,15 +26,15 @@ const TeacherProfileSection = ({ teacher, styles }) => {
             { backgroundColor: statusColors[teacher.durum] || '#ccc' }
           ]} 
         />
-        <Text style={styles.statusText}>{teacher?.durum || 'Bilinmiyor'}</Text>
+        <Text style={styles.statusText}>{teacher?.durum || t('bilinmeyen_durum')}</Text>
       </View>
 
       <Text style={styles.detail}>
-        Kat: {teacher?.kat ? `${teacher.kat}. Kat` : t('atanmamis')}
+        {t('kat')}: {teacher?.kat ? `${teacher.kat}. ${t('kat')}` : t('atanmamis')}
       </Text>
       
       {teacher?.telefon && (
-        <Text style={styles.detail}>Telefon: {teacher.telefon}</Text>
+        <Text style={styles.detail}>{t('telefon')}: {teacher.telefon}</Text>
       )}
     </>
   );

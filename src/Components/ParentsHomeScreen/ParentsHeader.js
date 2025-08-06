@@ -6,12 +6,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import styles from './Styles/ParentsHeaderStyle';
 
 const ParentsHeader = ({ navigation }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.headerContainer}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <MaterialIcons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
-      <Text style={styles.header}>Kat Bilgisi</Text>
+      <Text style={styles.header}>{t('kat_bilgisi')}</Text>
       <View style={{ width: 24 }} /> 
     </View>
   );

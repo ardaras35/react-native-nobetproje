@@ -6,6 +6,7 @@ import styles from './Styles/LoginIntroStyle'
 
 const LoginIntro = () => {
   const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <Image
@@ -14,7 +15,7 @@ const LoginIntro = () => {
         resizeMode="contain"
       />
       <Text style={styles.infoText}>
-        Nöbetçi öğretmenlerin bilgilerini görmek için lütfen giriş yapınız.
+        {t('nobetci_ogretmenlerin_bilgiler')}
       </Text>
     </View>
   );

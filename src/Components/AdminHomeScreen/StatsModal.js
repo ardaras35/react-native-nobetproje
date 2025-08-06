@@ -9,13 +9,15 @@ import FloorDistribution from './StatsModalComponents/FloorDistribution';
 import QuickInfo from './StatsModalComponents/QuickInfo';
 
 const StatsModal = ({ visible, onClose, statistics }) => {
+  const { t } = useTranslation();
+  
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.modalOverlay}>
         <View style={styles.statsModal}>
           
           <ModalHeader 
-            title="📊 İstatistikler"
+            title={t('istatistikler')}
             onClose={onClose}
             styles={styles}
           />

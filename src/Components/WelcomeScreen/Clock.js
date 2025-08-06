@@ -5,14 +5,17 @@ import { useTranslation } from 'react-i18next';
 import styles from './Styles/ClockStyle';
 
 const Clock = ({ now }) => {
-  const timeDisplay = now.toLocaleTimeString('tr-TR', {
+  const { i18n } = useTranslation();
+  const locale = i18n.language === 'tr' ? 'tr-TR' : 'en-US';
+
+  const timeDisplay = now.toLocaleTimeString(locale, {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
     hour12: false,
   });
 
-  const dateDisplay = now.toLocaleDateString('tr-TR', {
+  const dateDisplay = now.toLocaleDateString(locale, {
     day: '2-digit',
     month: 'long',
     year: 'numeric',

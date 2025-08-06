@@ -7,7 +7,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import teacherData from '../data/teacher.json';
 import styles from '../styles/AdminHomeScreenStyle';
 
-// Kullanılan component dosyaları çekiliyor.
 import AdminHeader from '../Components/AdminHomeScreen/AdminHeader';
 import TeacherCard from '../Components/AdminHomeScreen/TeacherCard';
 import AddTeacherModal from '../Components/AdminHomeScreen/AddTeacherModal';
@@ -17,9 +16,10 @@ import SearchAndFilterBar from '../Components/AdminHomeScreen/SearchAndFilterBar
 import ResultsHeader from '../Components/AdminHomeScreen/ResultsHeader';
 
 export default function AdminHomeScreen() {
+  const { t } = useTranslation();
   const [teachers, setTeachers] = useState([]);
   const [searchText, setSearchText] = useState('');
-  const [debouncedSearchText, setDebouncedSearchText] = useState(''); // Debounced search
+  const [debouncedSearchText, setDebouncedSearchText] = useState('');
   const [selectedFilter, setSelectedFilter] = useState(t('tumu'));
   const [selectedFloorFilter, setSelectedFloorFilter] = useState(t('tumu'));
   const [showAddModal, setShowAddModal] = useState(false);
@@ -33,8 +33,8 @@ export default function AdminHomeScreen() {
     image: null,
   });
 
-  const filterOptions = [t('tumu'), t('nobetci'), 'Derste', 'İzinli'];
-  const floorOptions = [t('tumu'), '1. Kat', '2. Kat', '3. Kat', '4. Kat', '5. Kat'];
+  const filterOptions = [t('tumu'), t('nobetci'), t('derste'), t('izinli')];
+  const floorOptions = [t('tumu'), t('1_kat'), t('2_kat'), t('3_kat'), t('4_kat'), t('5_kat')];
 
   useEffect(() => {
     loadData();
@@ -43,7 +43,7 @@ export default function AdminHomeScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchText(searchText);
-    }, 500); //
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [searchText]);
@@ -59,7 +59,7 @@ export default function AdminHomeScreen() {
         setTeachers(teacherData);
       }
     } catch (err) {
-      alert(t('veri_yuklenemedi'));
+      Alert.alert(t('hata_olustu'), t('veri_yuklenemedi'));
       setTeachers([]);
     }
   };
@@ -67,7 +67,7 @@ export default function AdminHomeScreen() {
   const saveChanges = async () => {
     try {
       await AsyncStorage.setItem('teachers', JSON.stringify(teachers));
-      Alert.alert('Kaydedildi!');
+      Alert.alert(t('kaydedildi'));
     } catch {
       Alert.alert(t('hata_olustu'));
     }
@@ -80,57 +80,66 @@ export default function AdminHomeScreen() {
   };
 
   const filteredTeachers = useMemo(() => {
-    return teachers.filter((t) => {
-      const search = t.ad.toLowerCase().includes(debouncedSearchText.toLowerCase()) || 
-                    t.brans.toLowerCase().includes(debouncedSearchText.toLowerCase());
-      const status = selectedFilter === t('tumu') || t.durum === selectedFilter;
-      const floor = selectedFloorFilter === t('tumu') || t.kat === parseInt(selectedFloorFilter.charAt(0));
+    return teachers.filter((teacher) => {
+      const localizedBranch = t(teacher.brans); // diline göre görünen branş
+      const search =
+        teacher.ad.toLowerCase().includes(debouncedSearchText.toLowerCase()) ||
+        localizedBranch.toLowerCase().includes(debouncedSearchText.toLowerCase());
+
+      const status = selectedFilter === t('tumu') || teacher.durum === selectedFilter;
+      
+      let floor = true;
+      if (selectedFloorFilter !== t('tumu')) {
+        const floorNumber = parseInt(selectedFloorFilter.charAt(0));
+        floor = teacher.kat === floorNumber;
+      }
+      
       return search && status && floor;
     });
-  }, [teachers, debouncedSearchText, selectedFilter, selectedFloorFilter]);
+  }, [teachers, debouncedSearchText, selectedFilter, selectedFloorFilter, t]);
 
   const statistics = useMemo(() => {
     const stats = {
       total: teachers.length,
-      nobetci: teachers.filter(t => t.durum === t('nobetci')).length,
-      derste: teachers.filter(t => t.durum === 'Derste').length,
-      izinli: teachers.filter(t => t.durum === 'İzinli').length,
+      nobetci: teachers.filter(teacher => teacher.durum === t('nobetci')).length,
+      derste: teachers.filter(teacher => teacher.durum === t('derste')).length,
+      izinli: teachers.filter(teacher => teacher.durum === t('izinli')).length,
       floorStats: {},
     };
     for (let i = 1; i <= 5; i++) {
-      stats.floorStats[i] = teachers.filter(t => t.kat === i).length;
+      stats.floorStats[i] = teachers.filter(teacher => teacher.kat === i).length;
     }
     return stats;
-  }, [teachers]);
+  }, [teachers, t]);
 
   const updateStatus = useCallback((id, status) => {
-    setTeachers(prev => prev.map(t => t.id === id ? { ...t, durum: status } : t));
+    setTeachers(prev => prev.map(teacher => teacher.id === id ? { ...teacher, durum: status } : teacher));
   }, []);
 
   const updateFloor = useCallback((id, newFloor) => {
     setTeachers(prev => {
       const teacher = prev.find(x => x.id === id);
-      if (teacher.durum === 'Derste' || teacher.durum === 'İzinli') return prev;
+      if (teacher.durum === t('derste') || teacher.durum === t('izinli')) return prev;
       
       const count = prev.filter(x => x.kat === newFloor && x.id !== id).length;
       if (count >= 2) return prev;
       
       return prev.map(x => x.id === id ? { ...x, kat: newFloor } : x);
     });
-  }, []);
+  }, [t]);
 
   const removeTeacher = useCallback((id) => {
-    setTeachers(prev => prev.filter(t => t.id !== id));
+    setTeachers(prev => prev.filter(teacher => teacher.id !== id));
   }, []);
 
   const addNewTeacher = useCallback(() => {
     if (!newTeacher.ad || !newTeacher.brans) return;
-    const id = Math.max(...teachers.map(t => t.id), 0) + 1;
+    const id = Math.max(...teachers.map(teacher => teacher.id), 0) + 1;
     const newT = { ...newTeacher, id };
     setTeachers(prev => [...prev, newT]);
     setNewTeacher({ ad: '', brans: '', durum: t('nobetci'), kat: null, image: null });
     setShowAddModal(false);
-  }, [newTeacher, teachers]);
+  }, [newTeacher, teachers, t]);
 
   const handleSearchTextChange = useCallback((text) => {
     setSearchText(text);
@@ -215,11 +224,11 @@ export default function AdminHomeScreen() {
           newTeacher={newTeacher}
           setNewTeacher={setNewTeacher}
           onAdd={addNewTeacher}
-          branches={[...new Set(teachers.map(t => t.brans))]}
+          branches={[...new Set(teachers.map(teacher => teacher.brans))]}
           statusColors={{
             [t('nobetci')]: '#4CAF50',
-            'Derste': '#2196F3',
-            'İzinli': '#FF9800'
+            [t('derste')]: '#2196F3',
+            [t('izinli')]: '#FF9800'
           }}
         />
       </SafeAreaView>

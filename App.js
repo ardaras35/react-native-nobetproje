@@ -1,16 +1,13 @@
-import 'react-native-gesture-handler';          
+// App.js
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import './i18n';
-
 import RootStack from './src/navigation/RootStack';
+import './src/i18n/index';
 
 export default function App() {
   return (
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <RootStack />
-      </NavigationContainer>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <RootStack />
+    </NavigationContainer>
   );
 }

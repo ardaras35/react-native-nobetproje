@@ -1,15 +1,15 @@
-// Yönetici giriş formu: ad-soyad input, şifre input, giriş butonu bulunmaktadır.
-
 import { View, Text, TextInput, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './Styles/AdminLoginFormStyle';
 
 const AdminLoginForm = ({ fullName, setFullName, password, setPassword, onLogin }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Ad Soyad</Text>
+      <Text style={styles.label}>{t('ad_soyad')}</Text>
       <TextInput
-        placeholder="Doruk Aras"
+        placeholder={t('doruk_aras_placeholder')}
         value={fullName}
         onChangeText={setFullName}
         style={styles.input}
@@ -17,7 +17,7 @@ const AdminLoginForm = ({ fullName, setFullName, password, setPassword, onLogin 
 
       <Text style={styles.label}>{t('sifre')}</Text>
       <TextInput
-        placeholder="123456"
+        placeholder={t('123456_placeholder')}
         secureTextEntry
         keyboardType="number-pad"
         value={password}

@@ -18,12 +18,10 @@ const SharedTeacherModal = ({
   onDelete, 
   isAdminMode = false 
 }) => {
-  if (!visible || !teacher) {
-    return null;
-  }
+  const { t } = useTranslation();
+  if (!visible || !teacher) return null;
 
   const handleCall = () => {
-  const { t } = useTranslation();
     ModalCallHandler.handleCall(teacher);
   };
 
@@ -32,49 +30,18 @@ const SharedTeacherModal = ({
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="fade"
-      transparent
-      onRequestClose={onClose}
-    >
+    <Modal visible={visible} animationType="fade" transparent onRequestClose={onClose}>
       <View style={styles.overlay}>
         <View style={styles.content}>
-          
-          <ModalCloseButton 
-            onClose={onClose} 
-            styles={styles} 
-          />
-
-          <TeacherProfileSection 
-            teacher={teacher} 
-            styles={styles} 
-          />
-
+          <ModalCloseButton onClose={onClose} styles={styles} />
+          <TeacherProfileSection teacher={teacher} styles={styles} />
           {isAdminMode && (
             <View style={styles.adminControls}>
-              <AdminStatusControls
-                teacher={teacher}
-                onStatusChange={onStatusChange}
-                styles={styles}
-              />
-
-              <AdminFloorControls
-                teacher={teacher}
-                onFloorChange={onFloorChange}
-                styles={styles}
-              />
+              <AdminStatusControls teacher={teacher} onStatusChange={onStatusChange} styles={styles} />
+              <AdminFloorControls teacher={teacher} onFloorChange={onFloorChange} styles={styles} />
             </View>
           )}
-
-          <ModalActionRow
-            teacher={teacher}
-            onCall={handleCall}
-            onDelete={handleDelete}
-            isAdminMode={isAdminMode}
-            styles={styles}
-          />
-
+          <ModalActionRow teacher={teacher} onCall={handleCall} onDelete={handleDelete} isAdminMode={isAdminMode} styles={styles} />
         </View>
       </View>
     </Modal>

@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import FloorStatsItem from './FloorStatsItem';
 
 const FloorDistribution = ({ statistics, styles }) => {
+  const { t } = useTranslation();
   const floors = [1, 2, 3, 4, 5];
 
   return (
     <View style={styles.statsCard}>
       <Text style={styles.cardTitle}>{t('kat_dagilimi')}</Text>
-      
       {floors.map((floor) => (
         <FloorStatsItem
           key={floor}

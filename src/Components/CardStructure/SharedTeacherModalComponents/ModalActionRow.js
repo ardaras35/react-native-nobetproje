@@ -9,19 +9,21 @@ const ModalActionRow = ({
   isAdminMode, 
   styles 
 }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.buttonRow}>
       {teacher?.telefon && (
         <TouchableOpacity onPress={onCall} style={styles.callButton}>
           <Ionicons name="call" size={16} color="#fff" />
-          <Text style={styles.callButtonText}>Ara</Text>
+          <Text style={styles.callButtonText}>{t('ara')}</Text>
         </TouchableOpacity>
       )}
       
       {isAdminMode && onDelete && (
         <TouchableOpacity onPress={onDelete} style={styles.deleteButton}>
           <Ionicons name="trash" size={16} color="#fff" />
-          <Text style={styles.deleteButtonText}>Sil</Text>
+          <Text style={styles.deleteButtonText}>{t('sil')}</Text>
         </TouchableOpacity>
       )}
     </View>

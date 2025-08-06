@@ -7,6 +7,7 @@ import styles from './Styles/AdminHeaderStyle';
 
 const AdminHeader = ({ onShowStats, onSave }) => {
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.header}>
@@ -17,7 +18,7 @@ const AdminHeader = ({ onShowStats, onSave }) => {
         <Ionicons name="arrow-back" size={24} color="#333" />
       </TouchableOpacity>
 
-      <Text style={styles.headerTitle}>Admin Panel</Text>
+      <Text style={styles.headerTitle}>{t('admin_panel')}</Text>
 
       <View style={styles.headerActions}>
         <TouchableOpacity onPress={onShowStats} style={styles.headerButton}>
@@ -26,7 +27,7 @@ const AdminHeader = ({ onShowStats, onSave }) => {
 
         <TouchableOpacity onPress={onSave} style={styles.saveButton}>
           <Ionicons name="save" size={16} color="#fff" />
-          <Text style={styles.saveButtonText}>Kaydet</Text>
+          <Text style={styles.saveButtonText}>{t('kaydet')}</Text>
         </TouchableOpacity>
       </View>
     </View>

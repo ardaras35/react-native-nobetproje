@@ -7,12 +7,12 @@ const StatusButtons = ({ currentStatus, onStatusUpdate, styles }) => {
 
   const statusColors = {
     [t('nobetci')]: '#4CAF50',
-    'Derste': '#2196F3',
-    'İzinli': '#FF9800',
+    [t('derste')]:  '#2196F3',
+    [t('izinli')]:  '#FF9800',
     [t('atanmadi')]: '#9E9E9E'
   };
 
-  const statusOptions = [t('nobetci'), 'Derste', 'İzinli'];
+  const statusOptions = [t('nobetci'), t('derste'), t('izinli')];
 
   return (
     <View>

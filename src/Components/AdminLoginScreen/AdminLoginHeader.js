@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import styles from './Styles/AdminLoginHeaderStyle';
 
 const AdminLoginHeader = ({ navigation }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.header}>
       <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>

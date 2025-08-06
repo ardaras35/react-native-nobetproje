@@ -2,47 +2,26 @@ import { View, Modal } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './Styles/TeacherModalStyle';
 
-import TeacherAvatarInfo from './TeacherModalComponents/TeacherAvatarInfo';
-import TeacherDetails from './TeacherModalComponents/TeacherDetails';
-import ModalActionButtons from './TeacherModalComponents/ModalActionButtons';
-import CallHandler from './TeacherModalComponents/CallHandler';
+import TeacherAvatarInfo from './TeacherModalComponent/TeacherAvatarInfo';
+import TeacherDetails from './TeacherModalComponent/TeacherDetails';
+import ModalActionButtons from './TeacherModalComponent/ModalActionButtons';
+import CallHandler from './TeacherModalComponent/CallHandler';
 
 const TeacherModal = ({ visible, teacher, onClose }) => {
-  if (!visible || !teacher) {
-    return null;
-  }
+  const { t } = useTranslation();
+  if (!visible || !teacher) return null;
 
   const handleCall = () => {
-  const { t } = useTranslation();
     CallHandler.handleCall(teacher);
   };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="fade"
-      transparent
-      onRequestClose={onClose}
-    >
+    <Modal visible={visible} animationType="fade" transparent onRequestClose={onClose}>
       <View style={styles.overlay}>
         <View style={styles.content}>
-          
-          <TeacherAvatarInfo 
-            teacher={teacher}
-            styles={styles}
-          />
-          
-          <TeacherDetails 
-            teacher={teacher}
-            styles={styles}
-          />
-
-          <ModalActionButtons
-            onCall={handleCall}
-            onClose={onClose}
-            styles={styles}
-          />
-
+          <TeacherAvatarInfo teacher={teacher} styles={styles} />
+          <TeacherDetails teacher={teacher} styles={styles} />
+          <ModalActionButtons onCall={handleCall} onClose={onClose} styles={styles} />
         </View>
       </View>
     </Modal>

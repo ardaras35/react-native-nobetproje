@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
 const FloorStatsItem = ({ floor, count, maxCapacity = 2, styles }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.floorItem}>
       <View style={styles.floorHeader}>
         <Ionicons name="business" size={16} color="#666" />
-        <Text style={styles.floorLabel}>{floor}. Kat</Text>
+        <Text style={styles.floorLabel}>{floor}. {t('kat')}</Text>
       </View>
       <View style={styles.floorCount}>
         <Text style={styles.floorNumber}>{count || 0}</Text>

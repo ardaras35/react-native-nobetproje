@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const FloorButtons = ({ currentFloor, currentStatus, onFloorUpdate, styles }) => {
+  const { t } = useTranslation();
   const floors = [1, 2, 3, 4, 5];
-  const isDisabled = currentStatus === 'İzinli' || currentStatus === 'Derste';
+  const isDisabled = currentStatus === t('izinli') || currentStatus === t('derste');
 
   return (
     <View>

@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import styles from './Styles/AdminLoginIntroStyle';
 
 const AdminLoginIntro = ({ fullName }) => {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <Image
@@ -13,7 +15,7 @@ const AdminLoginIntro = ({ fullName }) => {
         resizeMode="contain"
       />
       <Text style={styles.welcomeText}>
-        Hoşgeldiniz Sn. {fullName || ''}
+        {t('hosgeldiniz')} {fullName || ''}
       </Text>
     </View>
   );

@@ -13,15 +13,15 @@ import LoginIntro from '../Components/ParentsLoginScreen/LoginIntro';
 import ParentsLoginForm from '../Components/ParentsLoginScreen/ParentsLoginForm';
 
 export default function ParentsLoginScreen() {
+  const { t } = useTranslation();
   const [fullName, setFullName] = useState('');
   const [numara, setNumara] = useState('');
   const navigation = useNavigation();
 
   const handleLogin = () => {
-  const { t } = useTranslation();
     const tokens = fullName.trim().split(/\s+/);
     if (tokens.length < 2 || !numara.trim()) {
-      return Alert.alert('Eksik Bilgi', t('lutfen_girdiginiz_bilgileri_ko'));
+      return Alert.alert(t('eksik_bilgi'), t('lutfen_girdiginiz_bilgileri_ko'));
     }
 
     const lastName = tokens.pop().toLowerCase();
@@ -38,7 +38,7 @@ export default function ParentsLoginScreen() {
     if (user) {
       navigation.replace('ParentsHome', { user });
     } else {
-      Alert.alert(t('hatali_giris'), 'Girdiğiniz bilgide kayıt bulunamamıştır.');
+      Alert.alert(t('hatali_giris'), t('girdiginiz_bilgide_kayit_bulun'));
     }
   };
 

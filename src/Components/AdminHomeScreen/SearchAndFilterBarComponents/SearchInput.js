@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { View, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const SearchInput = ({ searchText, setSearchText, placeholder = "Ara...", styles }) => {
+const SearchInput = ({ searchText, setSearchText, placeholder, styles }) => {
   const inputRef = useRef(null);
+  const { t } = useTranslation();
 
   return (
     <View style={styles.searchContainer}>
@@ -12,7 +13,7 @@ const SearchInput = ({ searchText, setSearchText, placeholder = "Ara...", styles
       <TextInput
         ref={inputRef}
         style={styles.searchInput}
-        placeholder={placeholder}
+        placeholder={placeholder || t('ogretmen_ara')}
         value={searchText}
         onChangeText={setSearchText}
         blurOnSubmit={false}

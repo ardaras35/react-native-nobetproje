@@ -5,11 +5,11 @@ const AdminStatusControls = ({ teacher, onStatusChange, styles }) => {
   const { t } = useTranslation();
   const statusColors = {
     [t('nobetci')]: '#4CAF50',
-    'Derste': '#2196F3',
-    'İzinli': '#FF9800'
+    [t('derste')]: '#2196F3',
+    [t('izinli')]: '#FF9800'
   };
 
-  const statusOptions = [t('nobetci'), 'Derste', 'İzinli'];
+  const statusOptions = [t('nobetci'), t('derste'), t('izinli')];
 
   return (
     <View>

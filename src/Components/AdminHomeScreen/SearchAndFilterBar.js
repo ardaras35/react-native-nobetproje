@@ -15,13 +15,14 @@ const SearchAndFilterBar = ({
   selectedFloorFilter,
   setSelectedFloorFilter,
 }) => {
+  const { t } = useTranslation();
   return (
     <View style={styles.searchSection}>
       
       <SearchInput
         searchText={searchText}
         setSearchText={setSearchText}
-        placeholder="Öğretmen ara..."
+        placeholder={t('ogretmen_ara')}
         styles={styles}
       />
 

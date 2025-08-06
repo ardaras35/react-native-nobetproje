@@ -1,7 +1,3 @@
-// Yeni öğretmen ekleme modalı: Öğretmen adı, branş seçimi, başlangıç durumu seçim alanları içerir. 
-// {t('ogretmen_ekle')} butonuna basıldığında yeni öğretmen verisini üst componente iletir.
-// Kullanıcıdan öğretmen bilgilerini alarak AsyncStorage'a kaydedilecek hale getirir.
-
 import {View, Text, Modal, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,6 +12,8 @@ const AddTeacherModal = ({
   branches = [], 
   statusColors = {} 
 }) => {
+  const { t } = useTranslation();
+
   return (
     <Modal visible={visible} transparent animationType="slide">
       <View style={styles.modalOverlay}>
@@ -34,7 +32,7 @@ const AddTeacherModal = ({
               <Text style={styles.inputLabel}>{t('ogretmen_adi_')}</Text>
               <TextInput
                 style={styles.textInput}
-                placeholder="Öğretmen adını girin"
+                placeholder={t('ogretmen_adini_girin')}
                 value={newTeacher?.ad || ''} 
                 onChangeText={(text) =>
                   setNewTeacher((prev) => ({ ...prev, ad: text }))
@@ -63,7 +61,7 @@ const AddTeacherModal = ({
                           newTeacher?.brans === branch && styles.selectedBranchButtonText,
                         ]}
                       >
-                        {branch}
+                        {t(branch)}
                       </Text>
                     </TouchableOpacity>
                   ))
@@ -76,7 +74,7 @@ const AddTeacherModal = ({
             <View style={styles.inputGroup}>
               <Text style={styles.inputLabel}>{t('baslangic_durumu')}</Text>
               <View style={styles.statusGrid}>
-                {[t('nobetci'), 'Derste', 'İzinli'].map((status) => (
+                {[t('nobetci'), t('derste'), t('izinli')].map((status) => (
                   <TouchableOpacity
                     key={status}
                     style={[

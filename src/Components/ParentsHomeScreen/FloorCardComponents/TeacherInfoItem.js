@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import imageMap from '../../../utils/imageMap';
 
 const TeacherInfoItem = ({ teacher, floorNumber, index, styles }) => {
+  const { t } = useTranslation();
+  
   const key = teacher
     ? `teacher-${floorNumber}-${teacher.id}`
     : `empty-${floorNumber}-${index}`;
@@ -10,7 +12,7 @@ const TeacherInfoItem = ({ teacher, floorNumber, index, styles }) => {
   if (!teacher) {
     return (
       <View key={key} style={styles.teacherInfo}>
-        <Text>---</Text>
+        <Text style={styles.name}>{t('bos_alan')}</Text>
       </View>
     );
   }
@@ -19,10 +21,9 @@ const TeacherInfoItem = ({ teacher, floorNumber, index, styles }) => {
   const img = imageMap[imageKey] ?? require('../../../../assets/default.png');
 
   const handlePress = () => {
-  const { t } = useTranslation();
     Alert.alert(
       t('ogretmen_bilgisi'),
-      `${teacher.ad}\n${teacher.brans}\nDurum: ${teacher.durum}`
+      `${teacher.ad}\n${teacher.brans}\n${t('durum')}: ${teacher.durum}`
     );
   };
 
