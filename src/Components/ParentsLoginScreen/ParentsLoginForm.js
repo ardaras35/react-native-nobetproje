@@ -1,10 +1,11 @@
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/ParentsLoginFormStyle';
 
 export default function ParentsLoginForm({ fullName, setFullName, numara, setNumara, onLogin }) {
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.label}>Öğrencinin Adı Soyadı</Text>
+      <Text style={styles.label}>t('ogrencinin_adi_soyadi')</Text>
       <TextInput
         placeholder="Arda Aras"
         value={fullName}
@@ -12,7 +13,7 @@ export default function ParentsLoginForm({ fullName, setFullName, numara, setNum
         style={styles.input}
         placeholderTextColor="#999999"
       />
-      <Text style={styles.label}>Öğrenci Numarası</Text>
+      <Text style={styles.label}>t('ogrenci_numarasi')</Text>
       <TextInput
         placeholder="1234"
         value={numara}
@@ -23,7 +24,7 @@ export default function ParentsLoginForm({ fullName, setFullName, numara, setNum
         placeholderTextColor="#999"
       />
       <TouchableOpacity onPress={onLogin} style={styles.loginButton}>
-        <Text style={styles.loginButtonText}>Giriş Yap</Text>
+        <Text style={styles.loginButtonText}>t('giris_yap')</Text>
       </TouchableOpacity>
     </View>
   );

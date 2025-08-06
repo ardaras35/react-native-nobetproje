@@ -1,6 +1,7 @@
 // Yönetici Giriş Ekranı: geri tuşu ve başlık,  logo, hoş geldiniz metni, ad soyad ve şifre formu bulunmaktadır.
 
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import admin from '../data/admin.json';
@@ -21,9 +22,10 @@ export default function AdminLoginScreen() {
       Başarılıysa yönlendirir **/
 
   const handlePress = () => {
+  const { t } = useTranslation();
     const tokens = fullName.trim().split(/\s+/);
     if (tokens.length < 2 || !password.trim()) {
-      return alert('Eksik Bilgi', 'Lütfen girdiğiniz bilgileri kontrol edin.');
+      return alert('Eksik Bilgi: ' + t('lutfen_girdiginiz_bilgileri_ko'));
     }
 
     const lastName = tokens.pop().toLocaleLowerCase('tr-TR');
@@ -40,7 +42,7 @@ export default function AdminLoginScreen() {
     if (user) {
       navigation.replace('AdminHome', { user });
     } else {
-      alert('Hatalı Giriş', 'Girdiğiniz bilgide kayıt bulunamadı.');
+      alert(t('hatali_giris') + '\n' + t('girdiginiz_bilgide_kayit_bulun'));
       setPassword('');
     }
   };

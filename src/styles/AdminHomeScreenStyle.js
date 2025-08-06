@@ -1,5 +1,6 @@
 // AdminHomeScreen Style
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const AdminHomeScreenStyle = StyleSheet.create({
   // Ana container

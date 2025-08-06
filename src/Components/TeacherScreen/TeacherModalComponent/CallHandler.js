@@ -1,9 +1,10 @@
 import { Alert, Linking } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const CallHandler = {
   handleCall: (teacher) => {
     if (!teacher?.telefon) {
-      Alert.alert('Uyarı', 'Telefon numarası bulunamadı.');
+      Alert.alert({t('uyari')}, {t('telefon_numarasi_bulunamadi')});
       return;
     }
 

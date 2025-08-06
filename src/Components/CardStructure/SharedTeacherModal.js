@@ -1,4 +1,5 @@
 import { View, Modal } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from '../CardStructure/SharedTeacherModalComponents/Styles/SharedTeacherModalStyle';
 
 import ModalCloseButton from './SharedTeacherModalComponents/ModalCloseButton';
@@ -22,6 +23,7 @@ const SharedTeacherModal = ({
   }
 
   const handleCall = () => {
+  const { t } = useTranslation();
     ModalCallHandler.handleCall(teacher);
   };
 

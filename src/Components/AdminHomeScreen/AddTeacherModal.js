@@ -1,8 +1,9 @@
 // Yeni öğretmen ekleme modalı: Öğretmen adı, branş seçimi, başlangıç durumu seçim alanları içerir. 
-// "Öğretmen Ekle" butonuna basıldığında yeni öğretmen verisini üst componente iletir.
+// {t('ogretmen_ekle')} butonuna basıldığında yeni öğretmen verisini üst componente iletir.
 // Kullanıcıdan öğretmen bilgilerini alarak AsyncStorage'a kaydedilecek hale getirir.
 
 import {View, Text, Modal, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/AddTeacherModalStyle';
 
@@ -21,7 +22,7 @@ const AddTeacherModal = ({
         <View style={styles.addModal}>
 
           <View style={styles.modalHeader}>
-            <Text style={styles.modalTitle}>👨‍🏫 Yeni Öğretmen Ekle</Text>
+            <Text style={styles.modalTitle}>{t('_yeni_ogretmen_ekle')}</Text>
             <TouchableOpacity onPress={onClose}>
               <Ionicons name="close" size={24} color="#333" />
             </TouchableOpacity>
@@ -30,7 +31,7 @@ const AddTeacherModal = ({
           <ScrollView showsVerticalScrollIndicator={false}>
 
             <View style={styles.inputGroup}>
-              <Text style={styles.inputLabel}>Öğretmen Adı *</Text>
+              <Text style={styles.inputLabel}>{t('ogretmen_adi_')}</Text>
               <TextInput
                 style={styles.textInput}
                 placeholder="Öğretmen adını girin"
@@ -42,7 +43,7 @@ const AddTeacherModal = ({
             </View>
 
             <View style={styles.inputGroup}>
-              <Text style={styles.inputLabel}>Branş *</Text>
+              <Text style={styles.inputLabel}>{t('brans_')}</Text>
               <View style={styles.branchGrid}>
                 {branches && branches.length > 0 ? (
                   branches.map((branch) => (
@@ -67,15 +68,15 @@ const AddTeacherModal = ({
                     </TouchableOpacity>
                   ))
                 ) : (
-                  <Text style={styles.noBranchesText}>Branş yüklenecek...</Text>
+                  <Text style={styles.noBranchesText}>{t('brans_yuklenecek')}</Text>
                 )}
               </View>
             </View>
 
             <View style={styles.inputGroup}>
-              <Text style={styles.inputLabel}>Başlangıç Durumu</Text>
+              <Text style={styles.inputLabel}>{t('baslangic_durumu')}</Text>
               <View style={styles.statusGrid}>
-                {['Nöbetçi', 'Derste', 'İzinli'].map((status) => (
+                {[t('nobetci'), 'Derste', 'İzinli'].map((status) => (
                   <TouchableOpacity
                     key={status}
                     style={[
@@ -103,7 +104,7 @@ const AddTeacherModal = ({
               disabled={!newTeacher?.ad || !newTeacher?.brans} 
             >
               <Ionicons name="person-add" size={20} color="#fff" />
-              <Text style={styles.addButtonText}>Öğretmen Ekle</Text>
+              <Text style={styles.addButtonText}>{t('ogretmen_ekle')}</Text>
             </TouchableOpacity>
           </ScrollView>
         </View>

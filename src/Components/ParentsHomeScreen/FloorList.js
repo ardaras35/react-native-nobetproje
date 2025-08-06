@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FlatList } from 'react-native';
 import FloorCard from './FloorCard';
 import styles from './Styles/FloorListStyle';

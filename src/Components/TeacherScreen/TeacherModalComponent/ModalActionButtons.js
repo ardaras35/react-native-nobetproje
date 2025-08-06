@@ -1,4 +1,5 @@
 import { View, TouchableOpacity, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const ModalActionButtons = ({ onCall, onClose, styles }) => {
   return (

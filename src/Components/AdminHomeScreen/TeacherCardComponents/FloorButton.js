@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const FloorButtons = ({ currentFloor, currentStatus, onFloorUpdate, styles }) => {
@@ -7,7 +8,7 @@ const FloorButtons = ({ currentFloor, currentStatus, onFloorUpdate, styles }) =>
 
   return (
     <View>
-      <Text style={styles.sectionTitle}>Kat Ataması</Text>
+      <Text style={styles.sectionTitle}>{t('kat_atamasi')}</Text>
       <View style={styles.floorButtons}>
         {floors.map((floor) => (
           <TouchableOpacity

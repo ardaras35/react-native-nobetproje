@@ -3,6 +3,7 @@
 // Kullanıcı yeni bir öğretmen eklemek istediğinde modal tetiklenir.
 
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import styles from './Styles/ResultsHeaderStyle';
 

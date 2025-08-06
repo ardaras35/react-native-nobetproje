@@ -1,4 +1,5 @@
 import { View, Image, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { getTeacherImage } from '../../../utils/imageMap';
 
 const TeacherAvatar = ({ teacher, styles }) => {

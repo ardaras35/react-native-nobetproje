@@ -1,4 +1,5 @@
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const FilterChips = ({ 
   options = [], 

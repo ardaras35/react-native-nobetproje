@@ -1,4 +1,5 @@
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import TeacherInfoItem from './TeacherInfoItem';
 
 const TeacherRow = ({ teachers, floorNumber, styles }) => {

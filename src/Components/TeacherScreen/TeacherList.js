@@ -1,6 +1,7 @@
 // Tüm öğretmenleri listeleyen bileşen: FlatList ile 2 kolonda öğretmen kartlarını render eder.
 
 import { FlatList } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/TeacherListStyle';
 import TeacherCard from './TeacherCard';
 

@@ -1,5 +1,6 @@
 // Header.js
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { MaterialIcons } from '@expo/vector-icons';
 import styles from '../TeacherScreen/Styles/HeaderStyle';
 
@@ -9,7 +10,7 @@ const Header = ({ onBack }) => {
       <TouchableOpacity onPress={onBack}>
         <MaterialIcons name="arrow-back" size={24} color="#000" />
       </TouchableOpacity>
-      <Text style={styles.header}>Öğretmenlerimiz</Text>
+      <Text style={styles.header}>{t('ogretmenlerimiz')}</Text>
       <View style={{ width: 24 }} />
     </View>
   );

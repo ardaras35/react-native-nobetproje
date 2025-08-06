@@ -1,4 +1,5 @@
 import { View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/FloorCardStyle';
 
 import FloorCardHeader from './FloorCardComponents/FloorCardHeader';

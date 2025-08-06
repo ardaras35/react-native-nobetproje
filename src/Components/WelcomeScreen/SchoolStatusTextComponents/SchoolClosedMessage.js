@@ -4,7 +4,7 @@ import TimeCalculator from './TimeCalculator';
 const SchoolClosedMessage = {
   getMessage: (now) => {
     if (isWeekend(now)) {
-      return 'Okulumuz hafta sonu kapalıdır.';
+      return t('okulumuz_hafta_sonu_kapalidir');
     }
 
     const currentHour = now.getHours();
@@ -14,7 +14,7 @@ const SchoolClosedMessage = {
       return `Okulun açılmasına: ${hours} saat ${minutes} dakika kaldı.`;
     }
     
-    return 'Okulumuz bugün için kapandı.';
+    return t('okulumuz_bugun_icin_kapandi');
   }
 };
 

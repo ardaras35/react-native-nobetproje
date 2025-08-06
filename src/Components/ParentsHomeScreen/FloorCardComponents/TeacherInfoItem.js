@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import imageMap from '../../../utils/imageMap';
 
 const TeacherInfoItem = ({ teacher, floorNumber, index, styles }) => {
@@ -18,8 +19,9 @@ const TeacherInfoItem = ({ teacher, floorNumber, index, styles }) => {
   const img = imageMap[imageKey] ?? require('../../../../assets/default.png');
 
   const handlePress = () => {
+  const { t } = useTranslation();
     Alert.alert(
-      'Öğretmen Bilgisi',
+      t('ogretmen_bilgisi'),
       `${teacher.ad}\n${teacher.brans}\nDurum: ${teacher.durum}`
     );
   };

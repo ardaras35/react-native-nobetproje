@@ -1,4 +1,5 @@
 import { View, Modal, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/StatsModalStyle';
 
 import ModalHeader from './StatsModalComponents/ModalHeader';

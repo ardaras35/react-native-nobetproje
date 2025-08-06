@@ -1,6 +1,7 @@
 // Veli Ana Ekranı: geri tuşu ve başlık, okulun açık/kapalı durumuna göre nöbetçi öğretmenleri katlara göre listeleyen bileşenler bulunmaktadır.
 
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCurrentDateString } from '../utils/schedule';

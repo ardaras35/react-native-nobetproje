@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const TeachersHeaderStyle = StyleSheet.create({
   // Ana header container

@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import FloorStatsItem from './FloorStatsItem';
 
 const FloorDistribution = ({ statistics, styles }) => {
@@ -6,7 +7,7 @@ const FloorDistribution = ({ statistics, styles }) => {
 
   return (
     <View style={styles.statsCard}>
-      <Text style={styles.cardTitle}>Kat Dağılımı</Text>
+      <Text style={styles.cardTitle}>{t('kat_dagilimi')}</Text>
       
       {floors.map((floor) => (
         <FloorStatsItem

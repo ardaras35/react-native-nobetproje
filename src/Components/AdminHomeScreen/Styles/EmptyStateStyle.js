@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const EmptyStateStyle = StyleSheet.create({
   // Ana empty state container

@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/SchoolStatusTextStyle';
 import StatusTextGenerator from './SchoolStatusTextComponents/StatusTextGenerator';
 

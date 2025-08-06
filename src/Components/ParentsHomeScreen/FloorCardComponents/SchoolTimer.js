@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const SchoolTimer = ({ 
   now, 
@@ -9,23 +10,24 @@ const SchoolTimer = ({
   styles 
 }) => {
   const getTimerText = () => {
+  const { t } = useTranslation();
     const hour = now.getHours();
     const isWeekend = [0, 6].includes(now.getDay());
 
     if (!isSchoolOpen) {
       if (isWeekend) {
-        return 'Okulumuz hafta sonu kapalıdır.';
+        return t('okulumuz_hafta_sonu_kapalidir');
       } else if (hour < 9) {
-        return 'Okulumuz henüz açılmadı.';
+        return t('okulumuz_henuz_acilmadi');
       } else {
-        return 'Okulumuz kapalıdır.';
+        return t('okulumuz_kapalidir');
       }
     }
 
     if (!currentSlot) {
       return minutesToNextClass !== null
         ? `Derse başlamak için ${minutesToNextClass} dakika kaldı.`
-        : 'Ders programı yükleniyor...';
+        : t('ders_programi_yukleniyor');
     }
 
     switch (currentSlot.type) {
@@ -37,12 +39,12 @@ const SchoolTimer = ({
       case 'break':
         return minutesToNextClass !== null
           ? `Derse ${minutesToNextClass} dakika kaldı.`
-          : 'Teneffüs zamanı.';
+          : t('teneffus_zamani');
       
       case 'lunch':
         return minutesToNextClass !== null
           ? `Öğle arasındadır, derse ${minutesToNextClass} dakika kaldı.`
-          : 'Öğle arası.';
+          : t('ogle_arasi');
       
       default:
         return 'Bilinmeyen durum.';

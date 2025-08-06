@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const SummaryCard = ({ total, styles }) => {
   return (

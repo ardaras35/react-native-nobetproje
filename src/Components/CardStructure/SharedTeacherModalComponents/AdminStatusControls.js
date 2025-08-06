@@ -1,17 +1,19 @@
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const AdminStatusControls = ({ teacher, onStatusChange, styles }) => {
+  const { t } = useTranslation();
   const statusColors = {
-    'Nöbetçi': '#4CAF50',
+    [t('nobetci')]: '#4CAF50',
     'Derste': '#2196F3',
     'İzinli': '#FF9800'
   };
 
-  const statusOptions = ['Nöbetçi', 'Derste', 'İzinli'];
+  const statusOptions = [t('nobetci'), 'Derste', 'İzinli'];
 
   return (
     <View>
-      <Text style={styles.sectionTitle}>Durum Değiştir</Text>
+      <Text style={styles.sectionTitle}>{t('durum_degistir')}</Text>
       <View style={styles.statusButtons}>
         {statusOptions.map((status) => (
           <TouchableOpacity

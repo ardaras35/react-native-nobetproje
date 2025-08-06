@@ -3,24 +3,24 @@ const SchoolOpenMessage = {
     if (!currentSlot) {
       return minutesToNextClass !== null
         ? `Derse başlamak için: ${minutesToNextClass} dakika kaldı.`
-        : 'Ders programı yükleniyor...';
+        : t('ders_programi_yukleniyor');
     }
 
     switch (currentSlot.type) {
       case 'class':
         return minutesToNextBreak !== null
           ? `Şu an ders var. Teneffüse: ${minutesToNextBreak} dakika kaldı.`
-          : 'Şu an ders devam ediyor.';
+          : t('su_an_ders_devam_ediyor');
 
       case 'break':
         return minutesToNextClass !== null
           ? `Şu an teneffüs. Derse: ${minutesToNextClass} dakika kaldı.`
-          : 'Şu an teneffüs zamanı.';
+          : t('su_an_teneffus_zamani');
 
       case 'lunch':
         return minutesToNextClass !== null
           ? `Şu an öğle arası. Derse: ${minutesToNextClass} dakika kaldı.`
-          : 'Şu an öğle arası.';
+          : t('su_an_ogle_arasi');
 
       default:
         return 'Bilinmeyen durum.';

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const ResultsHeaderStyle = StyleSheet.create({
   // Ana results header container

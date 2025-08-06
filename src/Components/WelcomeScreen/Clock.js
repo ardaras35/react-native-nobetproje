@@ -1,6 +1,7 @@
 // Canlı saat ve tarih gösterimini sağlar.  Welcome Screen için.
 
 import { Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/ClockStyle';
 
 const Clock = ({ now }) => {

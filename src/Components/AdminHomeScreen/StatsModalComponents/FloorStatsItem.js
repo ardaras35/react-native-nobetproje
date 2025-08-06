@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 
 const FloorStatsItem = ({ floor, count, maxCapacity = 2, styles }) => {

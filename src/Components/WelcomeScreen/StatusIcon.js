@@ -1,6 +1,7 @@
 // Okulun açık veya kapalı olduğunu temsil eden simgeyi gösterir.  Welcome Screen için.
 
 import { Image } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/StatusIcon';
 
 const StatusIcon = ({ isSchoolOpen }) => {

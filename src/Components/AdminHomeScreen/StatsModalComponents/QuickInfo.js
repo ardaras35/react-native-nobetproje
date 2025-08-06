@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const QuickInfo = ({ styles }) => {
+  const { t } = useTranslation();
   const infoItems = [
     "Her katta maksimum 2 öğretmen olabilir.",
-    "Derste veya izinli öğretmenler kat değiştiremez.",
-    "İstatistikler gerçek zamanlı güncellenir."
+    t('derste_veya_izinli_ogretmenler'),
+    t('istatistikler_gercek_zamanli_g')
   ];
 
   return (

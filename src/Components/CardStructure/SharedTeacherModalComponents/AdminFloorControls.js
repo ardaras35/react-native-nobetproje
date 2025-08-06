@@ -1,4 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const AdminFloorControls = ({ teacher, onFloorChange, styles }) => {
   const floors = [1, 2, 3, 4, 5];

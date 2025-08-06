@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const StatusStatsItem = ({ status, count, total, color, styles }) => {
   const getPercentage = (count, total) => {

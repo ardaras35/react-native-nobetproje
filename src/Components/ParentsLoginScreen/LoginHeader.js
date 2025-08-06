@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 import styles from './Styles/LoginHeaderStyle';
 
@@ -9,7 +10,7 @@ const LoginHeader = ({ navigation }) => {
         <Text style={styles.backButtonText}>←</Text>
       </TouchableOpacity>
 
-      <Text style={styles.headerTitle}>Geri Dön</Text>
+      <Text style={styles.headerTitle}>t('geri_don')</Text>
 
       <View style={styles.spacer} />
     </View>

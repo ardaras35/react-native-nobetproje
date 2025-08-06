@@ -1,4 +1,5 @@
 import { View, Modal } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import styles from './Styles/TeacherModalStyle';
 
 import TeacherAvatarInfo from './TeacherModalComponents/TeacherAvatarInfo';
@@ -12,6 +13,7 @@ const TeacherModal = ({ visible, teacher, onClose }) => {
   }
 
   const handleCall = () => {
+  const { t } = useTranslation();
     CallHandler.handleCall(teacher);
   };
 

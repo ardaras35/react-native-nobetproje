@@ -7,7 +7,7 @@ const TeacherFilterHelper = {
 
   getAvailableTeachersCount: (teachers, floorNumber) => {
     return teachers.filter(
-      t => t.kat === floorNumber && t.durum === 'Nöbetçi'
+      t => t.kat === floorNumber && t.durum === t('nobetci')
     ).length;
   },
 

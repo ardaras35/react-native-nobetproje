@@ -1,6 +1,7 @@
 // Admin Ana Ekranı: geri tuşu ve başlık, öğretmen arama ve filtreleme, durum ve kat atama, öğretmen ekleme/silme, istatistik ve boş liste durumu gibi bileşenler bulunmaktadır.
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, FlatList, RefreshControl, SafeAreaView, StatusBar, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import teacherData from '../data/teacher.json';
@@ -19,21 +20,21 @@ export default function AdminHomeScreen() {
   const [teachers, setTeachers] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [debouncedSearchText, setDebouncedSearchText] = useState(''); // Debounced search
-  const [selectedFilter, setSelectedFilter] = useState('Tümü');
-  const [selectedFloorFilter, setSelectedFloorFilter] = useState('Tümü');
+  const [selectedFilter, setSelectedFilter] = useState(t('tumu'));
+  const [selectedFloorFilter, setSelectedFloorFilter] = useState(t('tumu'));
   const [showAddModal, setShowAddModal] = useState(false);
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [newTeacher, setNewTeacher] = useState({
     ad: '',
     brans: '',
-    durum: 'Nöbetçi',
+    durum: t('nobetci'),
     kat: null,
     image: null,
   });
 
-  const filterOptions = ['Tümü', 'Nöbetçi', 'Derste', 'İzinli'];
-  const floorOptions = ['Tümü', '1. Kat', '2. Kat', '3. Kat', '4. Kat', '5. Kat'];
+  const filterOptions = [t('tumu'), t('nobetci'), 'Derste', 'İzinli'];
+  const floorOptions = [t('tumu'), '1. Kat', '2. Kat', '3. Kat', '4. Kat', '5. Kat'];
 
   useEffect(() => {
     loadData();
@@ -58,7 +59,7 @@ export default function AdminHomeScreen() {
         setTeachers(teacherData);
       }
     } catch (err) {
-      alert('Veri yüklenemedi.');
+      alert(t('veri_yuklenemedi'));
       setTeachers([]);
     }
   };
@@ -68,7 +69,7 @@ export default function AdminHomeScreen() {
       await AsyncStorage.setItem('teachers', JSON.stringify(teachers));
       Alert.alert('Kaydedildi!');
     } catch {
-      Alert.alert('Hata oluştu!');
+      Alert.alert(t('hata_olustu'));
     }
   };
 
@@ -82,8 +83,8 @@ export default function AdminHomeScreen() {
     return teachers.filter((t) => {
       const search = t.ad.toLowerCase().includes(debouncedSearchText.toLowerCase()) || 
                     t.brans.toLowerCase().includes(debouncedSearchText.toLowerCase());
-      const status = selectedFilter === 'Tümü' || t.durum === selectedFilter;
-      const floor = selectedFloorFilter === 'Tümü' || t.kat === parseInt(selectedFloorFilter.charAt(0));
+      const status = selectedFilter === t('tumu') || t.durum === selectedFilter;
+      const floor = selectedFloorFilter === t('tumu') || t.kat === parseInt(selectedFloorFilter.charAt(0));
       return search && status && floor;
     });
   }, [teachers, debouncedSearchText, selectedFilter, selectedFloorFilter]);
@@ -91,7 +92,7 @@ export default function AdminHomeScreen() {
   const statistics = useMemo(() => {
     const stats = {
       total: teachers.length,
-      nobetci: teachers.filter(t => t.durum === 'Nöbetçi').length,
+      nobetci: teachers.filter(t => t.durum === t('nobetci')).length,
       derste: teachers.filter(t => t.durum === 'Derste').length,
       izinli: teachers.filter(t => t.durum === 'İzinli').length,
       floorStats: {},
@@ -127,7 +128,7 @@ export default function AdminHomeScreen() {
     const id = Math.max(...teachers.map(t => t.id), 0) + 1;
     const newT = { ...newTeacher, id };
     setTeachers(prev => [...prev, newT]);
-    setNewTeacher({ ad: '', brans: '', durum: 'Nöbetçi', kat: null, image: null });
+    setNewTeacher({ ad: '', brans: '', durum: t('nobetci'), kat: null, image: null });
     setShowAddModal(false);
   }, [newTeacher, teachers]);
 
@@ -216,7 +217,7 @@ export default function AdminHomeScreen() {
           onAdd={addNewTeacher}
           branches={[...new Set(teachers.map(t => t.brans))]}
           statusColors={{
-            'Nöbetçi': '#4CAF50',
+            [t('nobetci')]: '#4CAF50',
             'Derste': '#2196F3',
             'İzinli': '#FF9800'
           }}

@@ -1,4 +1,5 @@
 import { Text } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const FloorCardHeader = ({ floorNumber, styles }) => {
   return (

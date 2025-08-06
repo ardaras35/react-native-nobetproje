@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const ParentsLoginIntroStyle = StyleSheet.create({
   // Ana intro container
