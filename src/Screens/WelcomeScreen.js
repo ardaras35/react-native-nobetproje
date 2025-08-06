@@ -1,6 +1,6 @@
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useTranslation } from 'react-i18next'; // ✅ Ekle
+import { useTranslation } from 'react-i18next';
 import { getCurrentDateString } from '../utils/schedule';
 import useSchedule from '../hooks/useSchedule';
 import styles from '../styles/WelcomeScreenStyle';
@@ -13,7 +13,7 @@ import LoginButtons from '../Components/WelcomeScreen/LoginButtons';
 
 export default function WelcomeScreen() {
   const navigation = useNavigation();
-  const { t, i18n } = useTranslation(); // ✅ Ekle
+  const { t, i18n } = useTranslation();
   const todayDate = getCurrentDateString();
 
   const {
@@ -24,7 +24,6 @@ export default function WelcomeScreen() {
     isSchoolOpen,
   } = useSchedule(todayDate);
 
-  // ✅ Dil değiştirme fonksiyonu
   const toggleLanguage = () => {
     const newLang = i18n.language === 'tr' ? 'en' : 'tr';
     i18n.changeLanguage(newLang);
@@ -34,7 +33,6 @@ export default function WelcomeScreen() {
     <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
         
-        {/* ✅ Dil değiştirme butonu */}
         <TouchableOpacity 
           onPress={toggleLanguage}
           style={{
@@ -62,7 +60,6 @@ export default function WelcomeScreen() {
           minutesToNextBreak={minutesToNextBreak}
         />
 
-        {/* ✅ Çeviri kullan */}
         <Text style={styles.title}>{t('35inch_nobetcim_uygulamasina_h')}</Text>
 
         <LoginButtons onNavigate={navigation.navigate} />

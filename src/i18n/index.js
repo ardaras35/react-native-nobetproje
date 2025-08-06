@@ -5,13 +5,11 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   tr: {
     translation: {
-      // Ana Sayfa
       "35inch_nobetcim_uygulamasina_h": "35Inch NöbetçiM Uygulamasına Hoşgeldiniz",
       "veli_girisi": "Veli Girişi",
       "yonetici_girisi": "Yönetici Girişi",
       "ogretmenlerimiz": "Öğretmenlerimiz",
 
-      // Öğretmen İşlemleri
       "ogretmen_ekle": "Öğretmen Ekle",
       "_yeni_ogretmen_ekle": "👨‍🏫 Yeni Öğretmen Ekle",
       "ogretmen_adi_": "Öğretmen Adı *",
@@ -21,12 +19,10 @@ const resources = {
       "ogretmen_sil": "Öğretmen Sil",
       "ogretmen_adini_girin": "Öğretmen adını girin",
 
-      // Branş ve Ders (branş adları için TR/EN çapraz anahtarlar)
       "brans_": "Branş *",
       "brans_yuklenecek": "Branş yüklenecek...",
       "baslangic_durumu": "Başlangıç Durumu",
 
-      // <- BRANŞ İSİMLERİ (Hem TR hem EN anahtarlarını ekledik)
       "Matematik": "Matematik",
       "Mathematics": "Matematik",
       "Fizik": "Fizik",
@@ -43,7 +39,6 @@ const resources = {
       "ders_programi_yukleniyor": "Ders programı yükleniyor...",
       "su_an_ders_devam_ediyor": "Şu an ders devam ediyor.",
 
-      // Durum İşlemleri
       "nobetci": "Nöbetçi",
       "durum_dagilimi": "Durum Dağılımı",
       "durum_guncelle": "Durum Güncelle",
@@ -53,7 +48,6 @@ const resources = {
       "derste": "Derste",
       "izinli": "İzinli",
 
-      // Kat İşlemleri
       "kat_dagilimi": "Kat Dağılımı",
       "kat_atamasi": "Kat Ataması",
       "derste_veya_izinli_ogretmenler": "Derste veya izinli öğretmenler kat değiştiremez.",
@@ -66,7 +60,6 @@ const resources = {
       "4_kat": "4. Kat",
       "5_kat": "5. Kat",
 
-      // Zaman ve Okul Durumu
       "okulumuz_hafta_sonu_kapalidir": "Okulumuz hafta sonu kapalıdır.",
       "okulumuz_henuz_acilmadi": "Okulumuz henüz açılmadı.",
       "okulumuz_kapalidir": "Okulumuz kapalıdır.",
@@ -81,7 +74,6 @@ const resources = {
       "su_an_teneffus_derse_dakika": "Şu an teneffüs. Derse: {{minutes}} dakika kaldı.",
       "su_an_ogle_arasi_derse_dakika": "Şu an öğle arası. Derse: {{minutes}} dakika kaldı.",
 
-      // Giriş ve Kimlik Doğrulama
       "sifre": "Şifre",
       "giris_yap": "Giriş Yap",
       "geri_don": "Geri Dön",
@@ -93,14 +85,12 @@ const resources = {
       "doruk_aras_placeholder": "Doruk Aras",
       "123456_placeholder": "123456",
 
-      // Veli ve Öğrenci
       "nobetci_ogretmenlerin_bilgiler": "Nöbetçi öğretmenlerin bilgilerini görmek için lütfen giriş yapınız.",
       "ogrencinin_adi_soyadi": "Öğrencinin Adı Soyadı",
       "ogrenci_numarasi": "Öğrenci Numarası",
       "arda_aras_placeholder": "Arda Aras",
       "1234_placeholder": "1234",
 
-      // İstatistik ve Bilgi
       "istatistikler_gercek_zamanli_g": "İstatistikler gerçek zamanlı güncellenir.",
       "hizli_bilgiler": "Hızlı Bilgiler",
       "arama_kriterlerini_degistirin_": "Arama kriterlerini değiştirin veya yeni öğretmen ekleyin",
@@ -110,7 +100,6 @@ const resources = {
       "ogretmen_gosteriliyor": "öğretmen gösteriliyor",
       "istatistikler": "📊 İstatistikler",
 
-      // Genel
       "tumu": "Tümü",
       "uyari": "Uyarı",
       "telefon_numarasi_bulunamadi": "Telefon numarası bulunamadı.",
@@ -120,7 +109,6 @@ const resources = {
       "durum": "Durum",
       "bos_alan": "---",
 
-      // Butonlar ve Aksiyonlar
       "kaydet": "Kaydet",
       "ara": "Ara",
       "kapat": "Kapat",
@@ -132,40 +120,33 @@ const resources = {
       "kaydedildi": "Kaydedildi!",
       "eksik_bilgi": "Eksik Bilgi",
 
-      // Sayfa başlıkları
       "kat_bilgisi": "Kat Bilgisi",
       "admin_panel": "Admin Panel",
 
-      // Onay mesajları
       "emin_misiniz": "Emin misiniz?",
       "devam_etmek_istiyor_musunuz": "Devam etmek istiyor musunuz?",
       "ogretmeni_silmek_istediginizden_emin": "{{name}} adlı öğretmeni silmek istediğinizden emin misiniz?",
       "durum_olan_ogretmeni_aramak": "{{durum}} olan bir öğretmeni aramak üzeresiniz. Devam etmek istiyor musunuz?",
       "bilinmeyen_durumda": "Bilinmeyen durumda",
 
-      // Zaman ifadeleri
       "derse_baslamak_icin_dakika_kaldi": "Derse başlamak için {{minutes}} dakika kaldı.",
       "teneffuse_dakika_kaldi": "Teneffüse {{minutes}} dakika kaldı.",
       "derse_dakika_kaldi": "Derse {{minutes}} dakika kaldı.",
       "ogle_arasi_derse_dakika_kaldi": "Öğle arasındadır, derse {{minutes}} dakika kaldı.",
 
-      // Ek bilgiler
       "her_katta_maksimum_2_ogretmen": "Her katta maksimum 2 öğretmen olabilir.",
 
-      // Modal ve Alert mesajları
       "ogretmen_silme_onay": "Öğretmen Sil",
       "ara_onay": "Ara"
     }
   },
   en: {
     translation: {
-      // Main Page
       "35inch_nobetcim_uygulamasina_h": "Welcome to 35Inch Guard App",
       "veli_girisi": "Parent Login",
       "yonetici_girisi": "Admin Login",
       "ogretmenlerimiz": "Our Teachers",
 
-      // Teacher Operations
       "ogretmen_ekle": "Add Teacher",
       "_yeni_ogretmen_ekle": "👨‍🏫 Add New Teacher",
       "ogretmen_adi_": "Teacher Name *",
@@ -175,12 +156,10 @@ const resources = {
       "ogretmen_sil": "Delete Teacher",
       "ogretmen_adini_girin": "Enter teacher name",
 
-      // Subject and Lesson (branch names, cross-mapped)
       "brans_": "Subject *",
       "brans_yuklenecek": "Subject will be loaded...",
       "baslangic_durumu": "Initial Status",
 
-      // <- BRANCH NAMES
       "Matematik": "Mathematics",
       "Mathematics": "Mathematics",
       "Fizik": "Physics",
@@ -197,7 +176,6 @@ const resources = {
       "ders_programi_yukleniyor": "Loading curriculum...",
       "su_an_ders_devam_ediyor": "Class is currently in session.",
 
-      // Status Operations
       "nobetci": "On Duty",
       "durum_dagilimi": "Status Distribution",
       "durum_guncelle": "Update Status",
@@ -207,7 +185,6 @@ const resources = {
       "derste": "In Class",
       "izinli": "On Leave",
 
-      // Floor Operations
       "kat_dagilimi": "Floor Distribution",
       "kat_atamasi": "Floor Assignment",
       "derste_veya_izinli_ogretmenler": "Teachers who are in class or on leave cannot change floors.",
@@ -220,7 +197,6 @@ const resources = {
       "4_kat": "4th Floor",
       "5_kat": "5th Floor",
 
-      // Time and School Status
       "okulumuz_hafta_sonu_kapalidir": "Our school is closed on weekends.",
       "okulumuz_henuz_acilmadi": "Our school has not yet opened.",
       "okulumuz_kapalidir": "Our school is closed.",
@@ -235,7 +211,6 @@ const resources = {
       "su_an_teneffus_derse_dakika": "It's recess now. Class in: {{minutes}} minutes.",
       "su_an_ogle_arasi_derse_dakika": "It's lunch break. Class in: {{minutes}} minutes.",
 
-      // Login and Authentication
       "sifre": "Password",
       "giris_yap": "Login",
       "geri_don": "Go Back",
@@ -244,17 +219,15 @@ const resources = {
       "lutfen_girdiginiz_bilgileri_ko": "Please check the information you entered.",
       "ad_soyad": "Name Surname",
       "hosgeldiniz": "Welcome",
-      "doruk_aras_placeholder": "John Doe",
+      "doruk_aras_placeholder": "Doruk Aras",
       "123456_placeholder": "123456",
 
-      // Parent and Student
       "nobetci_ogretmenlerin_bilgiler": "Please log in to see the information of the teachers on duty.",
       "ogrencinin_adi_soyadi": "Student's Name and Surname",
       "ogrenci_numarasi": "Student Number",
-      "arda_aras_placeholder": "John Smith",
+      "arda_aras_placeholder": "Arda Aras",
       "1234_placeholder": "1234",
 
-      // Statistics and Information
       "istatistikler_gercek_zamanli_g": "Statistics are updated in real time.",
       "hizli_bilgiler": "Quick Info",
       "arama_kriterlerini_degistirin_": "Change search criteria or add new teacher",
@@ -264,7 +237,6 @@ const resources = {
       "ogretmen_gosteriliyor": "teachers showing",
       "istatistikler": "📊 Statistics",
 
-      // General
       "tumu": "All",
       "uyari": "Warning",
       "telefon_numarasi_bulunamadi": "Phone number not found.",
@@ -274,7 +246,6 @@ const resources = {
       "durum": "Status",
       "bos_alan": "---",
 
-      // Buttons and Actions
       "kaydet": "Save",
       "ara": "Search",
       "kapat": "Close",
@@ -286,30 +257,24 @@ const resources = {
       "kaydedildi": "Saved!",
       "eksik_bilgi": "Missing Information",
 
-      // Date and Time
       "tarih": "Date",
 
-      // Page titles
       "kat_bilgisi": "Floor Information",
       "admin_panel": "Admin Panel",
 
-      // Confirmation messages
       "emin_misiniz": "Are you sure?",
       "devam_etmek_istiyor_musunuz": "Do you want to continue?",
       "ogretmeni_silmek_istediginizden_emin": "Are you sure you want to delete teacher {{name}}?",
       "durum_olan_ogretmeni_aramak": "You are about to call a teacher who is {{durum}}. Do you want to continue?",
       "bilinmeyen_durumda": "in unknown status",
 
-      // Time expressions (with interpolation)
       "derse_baslamak_icin_dakika_kaldi": "{{minutes}} minutes left to start class.",
       "teneffuse_dakika_kaldi": "{{minutes}} minutes left to recess.",
       "derse_dakika_kaldi": "{{minutes}} minutes left to class.",
       "ogle_arasi_derse_dakika_kaldi": "It's lunch break, {{minutes}} minutes left to class.",
 
-      // Additional information
       "her_katta_maksimum_2_ogretmen": "Maximum 2 teachers per floor.",
 
-      // Modal and Alert messages
       "ogretmen_silme_onay": "Delete Teacher",
       "ara_onay": "Call"
     }
@@ -320,7 +285,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'tr', // Default language
+    lng: 'tr',
     fallbackLng: 'tr',
     interpolation: { escapeValue: false },
     debug: false,
