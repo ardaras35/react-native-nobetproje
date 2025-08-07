@@ -126,7 +126,7 @@ class I18nConverter {
       if (stat.isDirectory()) {
         totalChanges += this.processDirectory(fullPath);
       } else if (file.match(/\.(js|jsx|ts|tsx)$/) && !file.includes('WelcomeScreen')) {
-        // WelcomeScreen'i atla çünkü zaten yaptık
+
         if (this.convertFile(fullPath)) {
           totalChanges++;
         }
