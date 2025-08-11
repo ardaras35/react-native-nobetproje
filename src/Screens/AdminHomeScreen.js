@@ -81,7 +81,7 @@ export default function AdminHomeScreen() {
 
   const filteredTeachers = useMemo(() => {
     return teachers.filter((teacher) => {
-      const localizedBranch = t(teacher.brans); // diline göre görünen branş
+      const localizedBranch = t(teacher.brans);
       const search =
         teacher.ad.toLowerCase().includes(debouncedSearchText.toLowerCase()) ||
         localizedBranch.toLowerCase().includes(debouncedSearchText.toLowerCase());
